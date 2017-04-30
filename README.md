@@ -29,3 +29,5 @@ da bola.
 ## GUI Design
 
 Este será o menu principal. Será possível abrir um Menu de Ajuda, com algumas indicações acerca do jogo. No ícone Definições será possível ajustar algumas definições, como o som ou o volume. Além disso será possível partilhar os resultados nas redes socias. Por fim, basta clicar no botão Play para iniciar o jogo.
+
+![alt text](https://github.com/dolfander/LPOO-Final-Project/blob/master/ImagesREADME/play.png "Logo Title Text 3")
