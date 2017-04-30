@@ -12,7 +12,7 @@ O nosso jogo vai ter como suporte a framework libGDX, assim sendo, vamos utiliza
 
 ![alt text](https://github.com/dolfander/LPOO-Final-Project/blob/master/ImagesREADME/bahaviour.png "Logo Title Text 2")
 
-## Design Patterns
+### Design Patterns
 
 **Singleton** – tal como já está especificado no UML, o nosso jogo deverá utilizar o Singleton para
 a Classe jogo. Esta abordagem irá resolver o facto de esta classe ser acedida várias vezes ao
@@ -28,14 +28,4 @@ da bola.
 
 ## GUI Design
 
-Este será o menu principal. Será
-possível abrir um Menu de
-Ajuda, com algumas indicações
-acerca do jogo. No ícone
-Definições será possível ajustar
-algumas definições, como o som
-ou o volume. Além disso será
-possível partilhar os resultados
-nas redes socias. Por fim, basta
-clicar no botão Play para iniciar o
-jogo.
+Este será o menu principal. Será possível abrir um Menu de Ajuda, com algumas indicações acerca do jogo. No ícone Definições será possível ajustar algumas definições, como o som ou o volume. Além disso será possível partilhar os resultados nas redes socias. Por fim, basta clicar no botão Play para iniciar o jogo.
