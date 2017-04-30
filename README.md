@@ -30,8 +30,6 @@ da bola.
 
 Este será o menu principal. Será possível abrir um Menu de Ajuda, com algumas indicações acerca do jogo. No ícone Definições será possível ajustar algumas definições, como o som ou o volume. Além disso será possível partilhar os resultados nas redes socias. Por fim, basta clicar no botão Play para iniciar o jogo.
 ![alt text](https://github.com/dolfander/LPOO-Final-Project/blob/master/ImagesREADME/play.png "Logo Title Text 3")
-
-
 Neste segundo menu
 continuamos a ter o botão de
 Ajuda e alguma das definições
@@ -41,14 +39,14 @@ nível que se pretende, assim
 como ver qual é a melhor
 pontuação obtida nesse mesmo
 nível.
-
+![alt text](https://github.com/dolfander/LPOO-Final-Project/blob/master/ImagesREADME/chooseLevel.png "Logo Title Text 4")
 Neste mock-up já se encontra
 o jogo em si. Para jogar
 devemos arrastar o dedo
 desde a bola até ao canto
 inferior esquerdo do ecrã. O
 objetivo será acertar no copo.
-
+![alt text](https://github.com/dolfander/LPOO-Final-Project/blob/master/ImagesREADME/game.png "Logo Title Text 5")
 Aqui encontra-se representado
 a painel de pontuações. Voltase
 a incorporar o ícone de
@@ -57,7 +55,7 @@ assim como o ícone de ajuda. O
 jogador poderá escolher jogar
 outra vez ou consultar a tabela
 dos melhores resultados.
-
+![alt text](https://github.com/dolfander/LPOO-Final-Project/blob/master/ImagesREADME/score.png "Logo Title Text 6")
 ## Test Design – testes unitários
 
 • Testar comportamento da bola relativamente às físicas implementadas
