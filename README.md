@@ -61,8 +61,13 @@ dos melhores resultados.
 ## Test Design – testes unitários
 
 • Testar comportamento da bola relativamente às físicas implementadas
+
 • Testar colisões com os diferentes objetos
+
 • Testar se a bola acerta no copo e se o jogo termina
+
 • Implementar os testes para os diferentes níveis
+
 • Testar se os pontos correspondem às colisões
+
 • Testar comportamento dos botões (play, settings, how to play, etc.)
