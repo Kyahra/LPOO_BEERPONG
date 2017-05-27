@@ -21,14 +21,14 @@ import static com.beerpong.game.Stages.GameStage.VIEWPORT_WIDTH;
  * Created by Sofia on 5/25/2017.
  */
 
-public class GroundActor extends Actor{
+public class LimitActor extends Actor{
     float width;
     float height;
     float x;
     float y;
 
 
-    public GroundActor( float width, float height, float x, float y){
+    public LimitActor(float width, float height, float x, float y){
         this.width = width;
         this.height = height;
         this.x = x;

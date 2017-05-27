@@ -1,4 +1,4 @@
-package com.beerpong.game.Screens;
+package com.beerpong.game.view;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
@@ -14,11 +14,11 @@ import com.beerpong.game.Stages.ScoreStage;
 public class PlayScreen extends ScreenAdapter {
 
     private final GameStage gameStage;
-    private final ScoreStage scoreStage;
+    //private final ScoreStage scoreStage;
 
     public PlayScreen(BeerPong game){
         this.gameStage = new GameStage(game);
-        this.scoreStage = new ScoreStage(game);
+       // this.scoreStage = new ScoreStage(game);
 
 
         Gdx.input.setInputProcessor(gameStage);
@@ -37,12 +37,12 @@ public class PlayScreen extends ScreenAdapter {
 
         // Draws the stage
         gameStage.draw();
-        scoreStage.draw();
+     //   scoreStage.draw();
     }
 
     @Override
     public void resize(int width, int height) {
         gameStage.getViewport().update(width, height, true);
-        scoreStage.getViewport().update(width, height, true);
+      //  scoreStage.getViewport().update(width, height, true);
     }
 }

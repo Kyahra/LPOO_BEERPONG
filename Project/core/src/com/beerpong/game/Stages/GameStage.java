@@ -1,9 +1,11 @@
 package com.beerpong.game.Stages;
 
+
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+
+import com.badlogic.gdx.input.GestureDetector;
+import com.badlogic.gdx.input.GestureDetector.GestureListener;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
@@ -12,7 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.beerpong.game.Actors.BallActor;
-import com.beerpong.game.Actors.GroundActor;
+import com.beerpong.game.Actors.LimitActor;
 import com.beerpong.game.BeerPong;
 
 /**
@@ -23,7 +25,6 @@ public class GameStage extends Stage {
     public static final int VIEWPORT_WIDTH =4;
     static final float PIXEL_TO_METER = 0.22f/200;
 
-    float viewport_height;
 
     BeerPong game;
     Texture background;
@@ -34,38 +35,27 @@ public class GameStage extends Stage {
     // private final Sound splashSound;
     // private final Sound backgroundSound;
 
+
     public GameStage(BeerPong game){
 
         this.game = game;
 
         // Setting Viewport
         float ratio = ((float) Gdx.graphics.getHeight() / (float) Gdx.graphics.getWidth());
-        viewport_height = VIEWPORT_WIDTH /PIXEL_TO_METER * ratio;
-
-        setViewport(new FitViewport(VIEWPORT_WIDTH/PIXEL_TO_METER,viewport_height));
+        setViewport(new FitViewport(VIEWPORT_WIDTH/PIXEL_TO_METER,VIEWPORT_WIDTH /PIXEL_TO_METER * ratio));
 
         game.getAssetManager().load("background.png", Texture.class);
         game.getAssetManager().load("ball.png",Texture.class);
         game.getAssetManager().finishLoading();
 
         ballActor = new BallActor(game);
-       // ballActor.setPosition((VIEWPORT_WIDTH)/PIXEL_TO_METER,(VIEWPORT_WIDTH*ratio)/PIXEL_TO_METER);
-    //    ballActor.setPosition(0,0);
         addActor(ballActor);
 
         world =new World(new Vector2(0,-3),true);
         ballBody = ballActor.createBody(world);
 
-        addLimitsActors();
-
-        ballActor.addListener(new ActorGestureListener() {
-            @Override
-            public void pan (InputEvent event, float x, float y, float deltaX, float deltaY) {
-                Vector2 vector = new Vector2(-deltaX/10, -deltaY/10);
-                vector.rotateRad(ballBody.getAngle());
-                ballBody.applyForceToCenter(vector, true);
-            }
-        });
+        addLimitActors();
+        addListeners();
 
 
         background = game.getAssetManager().get("background.png");
@@ -87,8 +77,6 @@ public class GameStage extends Stage {
     public void act(float delta) {
         super.act(delta);
 
-
-
         // Step the world
         world.step(delta, 6, 2);
 
@@ -99,20 +87,20 @@ public class GameStage extends Stage {
 
     }
 
-    public void addLimitsActors(){
+    public void addLimitActors(){
 
         float ratio = ((float) Gdx.graphics.getHeight() / (float) Gdx.graphics.getWidth());
 
-        GroundActor groundActor = new GroundActor(VIEWPORT_WIDTH,0.1f,0,0);
+        LimitActor groundActor = new LimitActor(VIEWPORT_WIDTH,0.15f,0,0);
         addActor(groundActor);
 
-        GroundActor roofActor = new GroundActor(VIEWPORT_WIDTH,0.1f,0,VIEWPORT_WIDTH *ratio);
+        LimitActor roofActor = new LimitActor(VIEWPORT_WIDTH,0.1f,0,VIEWPORT_WIDTH *ratio);
         addActor(roofActor);
 
-        GroundActor leftWallActor = new GroundActor(0.1f,VIEWPORT_WIDTH * ratio,0,0);
+        LimitActor leftWallActor = new LimitActor(0.2f,VIEWPORT_WIDTH * ratio,0,0);
         addActor(leftWallActor);
 
-        GroundActor rightWallActor = new GroundActor(0.1f,VIEWPORT_WIDTH * ratio,VIEWPORT_WIDTH,0);
+        LimitActor rightWallActor = new LimitActor(0.2f,VIEWPORT_WIDTH * ratio,VIEWPORT_WIDTH,0);
         addActor(rightWallActor);
 
 
@@ -123,6 +111,23 @@ public class GameStage extends Stage {
 
 
     }
+
+    public void addListeners(){
+
+
+        ballActor.addListener(new ActorGestureListener() {
+          //  @Override
+            public void pan (InputEvent event, float x, float y, float delta_X, float delta_Y) {
+                Vector2 vector = new Vector2(-delta_X/20,-delta_Y/20);
+                vector.rotateRad(ballBody.getAngle());
+                ballBody.applyForceToCenter(vector, true);
+            }
+        });
+
+
+    }
+
+
 
 
 
