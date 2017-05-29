@@ -1,6 +1,7 @@
 package com.beerpong.game.controller;
 
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Contact;
@@ -14,11 +15,7 @@ import com.beerpong.game.controller.entities.BallBody;
 import com.beerpong.game.controller.entities.LimitBody;
 import com.beerpong.game.model.GameModel;
 import com.beerpong.game.model.entities.EntityModel;
-import com.beerpong.game.model.entities.LimitModel;
 
-import java.util.ArrayList;
-
-import static com.beerpong.game.view.GameView.VIEWPORT_HEIGHT;
 import static com.beerpong.game.view.GameView.VIEWPORT_WIDTH;
 
 
@@ -30,12 +27,10 @@ public class GameController implements ContactListener {
 
     private static GameController instance;
 
-
-
-
     private final World world;
 
     private final BallBody ballBody;
+
 
 
     private GameController(){
@@ -44,10 +39,12 @@ public class GameController implements ContactListener {
         ballBody = new BallBody(world, GameModel.getInstance().getBall());
 
 
-        new LimitBody(world,GameModel.getInstance().getGround(),VIEWPORT_HEIGHT,VIEWPORT_WIDTH*0.25f);
-        new LimitBody(world,GameModel.getInstance().getLeftWall(),4f,VIEWPORT_HEIGHT);
-        new LimitBody(world,GameModel.getInstance().getRoof(),VIEWPORT_HEIGHT,VIEWPORT_WIDTH*0.25f);
-       new LimitBody(world,GameModel.getInstance().getRightWall(),2f,VIEWPORT_HEIGHT);
+        float ratio = ((float) Gdx.graphics.getHeight() / (float) Gdx.graphics.getWidth());
+
+        new LimitBody(world,GameModel.getInstance().getGround(), VIEWPORT_WIDTH*ratio*2, VIEWPORT_WIDTH*0.1f );
+        new LimitBody(world,GameModel.getInstance().getLeftWall(),VIEWPORT_WIDTH*ratio*0.1f,VIEWPORT_WIDTH);
+        new LimitBody(world,GameModel.getInstance().getRoof(),VIEWPORT_WIDTH*ratio*2,VIEWPORT_WIDTH*0.1f);
+        new LimitBody(world,GameModel.getInstance().getRightWall(),VIEWPORT_WIDTH*ratio*0.1f,VIEWPORT_WIDTH);
 
 
         world.setContactListener(this);
@@ -108,5 +105,7 @@ public class GameController implements ContactListener {
     }
 
 
-
+    public World getWorld() {
+        return world;
+    }
 }

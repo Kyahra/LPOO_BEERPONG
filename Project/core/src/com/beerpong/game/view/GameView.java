@@ -5,9 +5,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.input.GestureDetector;
+import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.beerpong.game.BeerPong;
@@ -25,24 +28,26 @@ import com.beerpong.game.view.entities.ViewFactory;
  */
 
 public class GameView extends ScreenAdapter implements GestureDetector.GestureListener {
-    public static final float PIXEL_TO_METER = 0.04f;
+    public static final float PIXEL_TO_METER =  0.04f;
     public static  int VIEWPORT_WIDTH =20;
-    public static  float VIEWPORT_HEIGHT;
+    private static final boolean DEBUG_PHYSICS = false;
 
     private final BeerPong game;
-    private Viewport viewport;
+
 
     private GestureDetector gestureDetecture;
     Texture background;
+
+    private final OrthographicCamera camera;
+    private Box2DDebugRenderer debugRenderer;
+    private Matrix4 debugCamera;
 
     public GameView(BeerPong game){
         this.game = game;
 
         loadAssets();
 
-        float ratio = ((float) Gdx.graphics.getHeight() / (float) Gdx.graphics.getWidth());
-        VIEWPORT_HEIGHT = VIEWPORT_WIDTH /PIXEL_TO_METER * ratio;
-        viewport =  new FitViewport(VIEWPORT_WIDTH/PIXEL_TO_METER, VIEWPORT_HEIGHT);
+        camera = createCamera();
 
 
 
@@ -51,6 +56,21 @@ public class GameView extends ScreenAdapter implements GestureDetector.GestureLi
 
         background = game.getAssetManager().get("background.png",Texture.class);
 
+    }
+
+    private OrthographicCamera createCamera() {
+        OrthographicCamera camera = new OrthographicCamera(VIEWPORT_WIDTH / PIXEL_TO_METER, VIEWPORT_WIDTH / PIXEL_TO_METER * ((float) Gdx.graphics.getHeight() / (float)Gdx.graphics.getWidth()));
+
+        camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
+        camera.update();
+
+        if (DEBUG_PHYSICS) {
+            debugRenderer = new Box2DDebugRenderer();
+            debugCamera = camera.combined.cpy();
+            debugCamera.scl(1 / PIXEL_TO_METER);
+        }
+
+        return camera;
     }
 
     private void loadAssets() {
@@ -64,6 +84,10 @@ public class GameView extends ScreenAdapter implements GestureDetector.GestureLi
     public void render(float delta){
 
         GameController.getInstance().update(delta);
+
+
+        camera.update();
+        game.getSpriteBatch().setProjectionMatrix(camera.combined);
         
         Gdx.gl.glClearColor(0,0,0,0);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
@@ -73,13 +97,18 @@ public class GameView extends ScreenAdapter implements GestureDetector.GestureLi
         drawBackground();
         drawEntities();
         game.getSpriteBatch().end();
-        
+
+        if (DEBUG_PHYSICS) {
+            debugCamera = camera.combined.cpy();
+            debugCamera.scl(1 / PIXEL_TO_METER);
+            debugRenderer.render(GameController.getInstance().getWorld(), debugCamera);
+        }
         
 
     }
 
     private void drawBackground() {
-        game.getSpriteBatch().draw(background,0,0,viewport.getScreenWidth(),viewport.getScreenHeight());
+        game.getSpriteBatch().draw(background,0,0,camera.viewportWidth,camera.viewportHeight);
     }
 
     private void drawEntities(){
@@ -89,7 +118,7 @@ public class GameView extends ScreenAdapter implements GestureDetector.GestureLi
         view.draw(game.getSpriteBatch());
     }
 
-
+/*
     @Override
     public void resize(int width, int height){
         viewport.update(width,height);
@@ -97,7 +126,7 @@ public class GameView extends ScreenAdapter implements GestureDetector.GestureLi
 
     }
 
-
+*/
     @Override
     public boolean touchDown(float x, float y, int pointer, int button) {
         return false;

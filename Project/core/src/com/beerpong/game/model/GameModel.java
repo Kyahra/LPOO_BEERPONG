@@ -1,15 +1,13 @@
 package com.beerpong.game.model;
 
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.beerpong.game.model.entities.BallModel;
 import com.beerpong.game.model.entities.LimitModel;
 
-
-import java.util.ArrayList;
-
-import static com.beerpong.game.view.GameView.VIEWPORT_HEIGHT;
 import static com.beerpong.game.view.GameView.VIEWPORT_WIDTH;
+
 
 /**
  * Created by Sofia on 5/27/2017.
@@ -35,13 +33,13 @@ public class GameModel extends Stage {
     private GameModel() {
 
 
-
-        ball = new BallModel(VIEWPORT_HEIGHT * 0.03f , VIEWPORT_WIDTH*0.5f,0);
+        float ratio = ((float) Gdx.graphics.getHeight() / (float) Gdx.graphics.getWidth());
+        ball = new BallModel(VIEWPORT_WIDTH/2,  VIEWPORT_WIDTH *ratio /2,0);
 
         ground = new LimitModel(0,0,0);
         leftWall = new LimitModel(0,0,0);
-        roof = new LimitModel(0,VIEWPORT_WIDTH*2.5f -4f,0);
-        rightWall = new LimitModel(VIEWPORT_HEIGHT/3.7f ,0,0);
+        roof = new LimitModel(0,VIEWPORT_WIDTH *ratio,0);
+        rightWall = new LimitModel(VIEWPORT_WIDTH ,0,0);
 
 
     }

@@ -26,10 +26,7 @@ public abstract class EntityModel {
      */
     private float rotation;
 
-    /**
-     * Has this model been flagged for removal?
-     */
-    private boolean flaggedForRemoval = false;
+
 
     /**
      * Constructs a model with a position and a rotation.
