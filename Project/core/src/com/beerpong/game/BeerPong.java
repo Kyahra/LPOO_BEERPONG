@@ -4,6 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.beerpong.game.view.GameView;
+import com.beerpong.game.view.entities.ViewFactory;
 
 public class BeerPong extends Game {
 
@@ -28,6 +29,7 @@ public class BeerPong extends Game {
 	@Override
 	public void dispose(){
 		batch.dispose();
+		ViewFactory.dispose();
 		assetManager.dispose();
 	}
 

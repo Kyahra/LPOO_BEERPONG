@@ -26,4 +26,8 @@ public class ViewFactory {
         }
         return cache.get(model.getType());
     }
+
+    public static void dispose(){
+        cache.clear();
+    }
 }
