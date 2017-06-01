@@ -36,6 +36,8 @@ public class LimitBody extends EntityBody {
         fixtureDef.density = .5f;      // how heavy is the ground
         fixtureDef.friction =  .5f;    // how slippery is the ground
         fixtureDef.restitution =  .5f; // how bouncy is the ground
+        fixtureDef.filter.categoryBits = LIMIT_BODY;
+        fixtureDef.filter.maskBits = BALL_BODY | CUP_BODY;
 
 
         body.createFixture(fixtureDef);

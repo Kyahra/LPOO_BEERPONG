@@ -16,6 +16,10 @@ import static com.beerpong.game.view.GameView.PIXEL_TO_METER;
 
 public abstract class EntityBody {
 
+    final static short BALL_BODY = 0x0001;
+    final static short LIMIT_BODY = 0x0002;
+    final static short CUP_BODY = 0x0004;
+
 
     /**
      * The Box2D body that supports this body.

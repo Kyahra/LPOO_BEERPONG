@@ -9,7 +9,6 @@ package com.beerpong.game.model.entities;
  * An abstract model representing an entity belonging to a game model.
  */
 public abstract class EntityModel {
-    public enum ModelType {BALL, LIMIT};
 
     /**
      * The x-coordinate of this model in meters.
@@ -88,5 +87,5 @@ public abstract class EntityModel {
         this.rotation = rotation;
     }
 
-    public abstract ModelType getType();
+
 }

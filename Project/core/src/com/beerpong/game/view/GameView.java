@@ -11,16 +11,11 @@ import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
-import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
 import com.beerpong.game.BeerPong;
 import com.beerpong.game.controller.GameController;
 import com.beerpong.game.model.GameModel;
-import com.beerpong.game.model.entities.BallModel;
+import com.beerpong.game.model.entities.SimpleModel;
 import com.beerpong.game.view.entities.EntityView;
-import com.beerpong.game.view.entities.ViewFactory;
-
-
 
 
 /**
@@ -77,6 +72,7 @@ public class GameView extends ScreenAdapter implements GestureDetector.GestureLi
 
         game.getAssetManager().load("background.png", Texture.class);
         game.getAssetManager().load("ball.png",Texture.class);
+        game.getAssetManager().load("cup2.png",Texture.class);
         game.getAssetManager().finishLoading();
     }
 
@@ -112,21 +108,22 @@ public class GameView extends ScreenAdapter implements GestureDetector.GestureLi
     }
 
     private void drawEntities(){
-        BallModel ball = GameModel.getInstance().getBall();
-        EntityView view = ViewFactory.makeView(game,ball);
+
+        EntityView view;
+
+        SimpleModel cup = GameModel.getInstance().getCup();
+        view = new EntityView(game, "cup2.png");
+        view.update(cup);
+        view.draw(game.getSpriteBatch());
+
+        SimpleModel ball = GameModel.getInstance().getBall();
+        view = new EntityView(game, "ball.png");
         view.update(ball);
         view.draw(game.getSpriteBatch());
-    }
-
-/*
-    @Override
-    public void resize(int width, int height){
-        viewport.update(width,height);
 
 
     }
 
-*/
     @Override
     public boolean touchDown(float x, float y, int pointer, int button) {
         return false;

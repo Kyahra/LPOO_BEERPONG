@@ -5,6 +5,7 @@ package com.beerpong.game.view.entities;
  */
 
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.beerpong.game.BeerPong;
@@ -19,7 +20,7 @@ import static com.beerpong.game.view.GameView.PIXEL_TO_METER;
  *
  * This view is able to update its data based on a entity model.
  */
-public abstract class EntityView {
+public  class EntityView {
     /**
      * The sprite representing this entity view.
      */
@@ -31,8 +32,13 @@ public abstract class EntityView {
      * @param game the game this view belongs to. Needed to access the
      *             asset manager to get textures.
      */
-    EntityView(BeerPong game) {
-        sprite = createSprite(game);
+    public EntityView(BeerPong game, String imageFile) {
+
+
+        Texture texture = game.getAssetManager().get(imageFile);
+
+
+        sprite = new Sprite(texture,texture.getWidth(), texture.getHeight());
     }
 
     /**
@@ -44,16 +50,6 @@ public abstract class EntityView {
         sprite.draw(batch);
     }
 
-    /**
-     * Abstract method that creates the view sprite. Concrete
-     * implementation should extend this method to create their
-     * own sprites.
-     *
-     * @param game the game this view belongs to. Needed to access the
-     *             asset manager to get textures.
-     * @return the sprite representing this view.
-     */
-    public abstract Sprite createSprite(BeerPong game);
 
     /**
      * Updates this view based on a certain model.

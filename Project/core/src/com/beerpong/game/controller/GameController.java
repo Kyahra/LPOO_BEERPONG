@@ -12,6 +12,7 @@ import com.badlogic.gdx.physics.box2d.World;
 
 import com.badlogic.gdx.utils.Array;
 import com.beerpong.game.controller.entities.BallBody;
+import com.beerpong.game.controller.entities.CupBody;
 import com.beerpong.game.controller.entities.LimitBody;
 import com.beerpong.game.model.GameModel;
 import com.beerpong.game.model.entities.EntityModel;
@@ -26,10 +27,9 @@ import static com.beerpong.game.view.GameView.VIEWPORT_WIDTH;
 public class GameController implements ContactListener {
 
     private static GameController instance;
-
     private final World world;
-
     private final BallBody ballBody;
+    private final CupBody cupBody;
 
 
 
@@ -37,13 +37,14 @@ public class GameController implements ContactListener {
         world = new World(new Vector2(0,-10),true);
 
         ballBody = new BallBody(world, GameModel.getInstance().getBall());
+        cupBody  = new CupBody(world, GameModel.getInstance().getCup());
 
 
         float ratio = ((float) Gdx.graphics.getHeight() / (float) Gdx.graphics.getWidth());
 
-        new LimitBody(world,GameModel.getInstance().getGround(), VIEWPORT_WIDTH*ratio*2, VIEWPORT_WIDTH*0.1f );
+        new LimitBody(world,GameModel.getInstance().getGround(), VIEWPORT_WIDTH*ratio*2, VIEWPORT_WIDTH*0.05f );
         new LimitBody(world,GameModel.getInstance().getLeftWall(),VIEWPORT_WIDTH*ratio*0.1f,VIEWPORT_WIDTH);
-        new LimitBody(world,GameModel.getInstance().getRoof(),VIEWPORT_WIDTH*ratio*2,VIEWPORT_WIDTH*0.1f);
+        new LimitBody(world,GameModel.getInstance().getRoof(),VIEWPORT_WIDTH*ratio*2,VIEWPORT_WIDTH*0.01f);
         new LimitBody(world,GameModel.getInstance().getRightWall(),VIEWPORT_WIDTH*ratio*0.1f,VIEWPORT_WIDTH);
 
 
@@ -64,6 +65,9 @@ public class GameController implements ContactListener {
         // Step the world
         world.step(delta, 6, 2);
 
+
+
+
         Array<Body> bodies = new Array<Body>();
         world.getBodies(bodies);
 
@@ -73,12 +77,13 @@ public class GameController implements ContactListener {
 
         }
 
+
     }
 
     public void shootBall(float delta_X, float delta_Y) {
-        Vector2 vector = new Vector2(delta_X,delta_Y);
+        Vector2 vector = new Vector2(delta_X/400,-delta_Y/400);
         vector.rotateRad(ballBody.getAngle());
-        ballBody.applyForceToCenter(delta_X,delta_Y, true);
+        ballBody.applyForceToCenter(delta_X/400,-delta_Y/400, true);
 
     }
 
