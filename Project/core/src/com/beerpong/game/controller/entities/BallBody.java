@@ -1,9 +1,11 @@
 package com.beerpong.game.controller.entities;
 
+
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.beerpong.game.model.entities.SimpleModel;
+
 
 
 /**

@@ -37,6 +37,8 @@ public class GameView extends ScreenAdapter implements GestureDetector.GestureLi
     private Box2DDebugRenderer debugRenderer;
     private Matrix4 debugCamera;
 
+
+
     public GameView(BeerPong game){
         this.game = game;
 

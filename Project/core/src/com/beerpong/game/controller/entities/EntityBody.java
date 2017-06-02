@@ -6,6 +6,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
+import com.beerpong.game.controller.GameController;
 import com.beerpong.game.model.entities.EntityModel;
 
 import static com.beerpong.game.view.GameView.PIXEL_TO_METER;

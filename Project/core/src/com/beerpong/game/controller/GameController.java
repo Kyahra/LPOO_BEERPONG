@@ -4,6 +4,7 @@ package com.beerpong.game.controller;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
+
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
@@ -26,11 +27,15 @@ import static com.beerpong.game.view.GameView.VIEWPORT_WIDTH;
 
 public class GameController implements ContactListener {
 
+
     private static GameController instance;
     private final World world;
     private final BallBody ballBody;
     private final CupBody cupBody;
 
+    private int score =0;
+
+    private boolean ballIsMoving = false;
 
 
     private GameController(){
@@ -81,9 +86,13 @@ public class GameController implements ContactListener {
     }
 
     public void shootBall(float delta_X, float delta_Y) {
-        Vector2 vector = new Vector2(delta_X/400,-delta_Y/400);
-        vector.rotateRad(ballBody.getAngle());
-        ballBody.applyForceToCenter(delta_X/400,-delta_Y/400, true);
+        if(!ballIsMoving) {
+            Vector2 vector = new Vector2(delta_X / 400, -delta_Y / 400);
+            vector.rotateRad(ballBody.getAngle());
+            ballBody.applyForceToCenter(delta_X / 400, -delta_Y / 400, true);
+            ballIsMoving = true;
+
+        }
 
     }
 
@@ -91,6 +100,11 @@ public class GameController implements ContactListener {
 
     @Override
     public void beginContact(Contact contact) {
+
+        score += 55;
+
+
+        System.out.println(score);
 
     }
 
