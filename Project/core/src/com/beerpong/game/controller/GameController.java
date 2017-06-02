@@ -31,7 +31,7 @@ public class GameController implements ContactListener {
     private final BallBody ballBody;
     private final CupBody cupBody;
 
-    private int score;
+
 
     private GameController(){
         world = new World(new Vector2(0,-10),true);
