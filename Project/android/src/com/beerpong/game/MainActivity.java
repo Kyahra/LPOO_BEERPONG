@@ -20,8 +20,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                                         | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                                                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                                                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION // hide nav bar
-                | View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
-            | View.SYSTEM_UI_FLAG_IMMERSIVE);
+                                                        | View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
+                                                        | View.SYSTEM_UI_FLAG_IMMERSIVE);
         setContentView(R.layout.mainlayout);
         findViewById(R.id.startGame).setOnClickListener(this);
         findViewById(R.id.exitButton).setOnClickListener(this);
