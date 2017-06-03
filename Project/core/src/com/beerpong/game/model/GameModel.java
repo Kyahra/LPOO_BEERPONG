@@ -19,7 +19,7 @@ import static com.beerpong.game.view.GameView.VIEWPORT_WIDTH;
 public class GameModel extends Stage {
     private static GameModel instance;
 
-    private SimpleModel ball;
+    private static SimpleModel ball;
 
     private SimpleModel ground;
     private SimpleModel roof;
@@ -59,5 +59,10 @@ public class GameModel extends Stage {
     public SimpleModel getRoof(){return roof;}
     public SimpleModel getLeftWall(){return leftWall;}
     public SimpleModel getRightWall(){return rightWall;}
+
+    public static void reset(){
+        instance = null;
+    }
+
 
 }

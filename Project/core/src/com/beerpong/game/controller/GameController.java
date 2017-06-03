@@ -70,9 +70,6 @@ public class GameController implements ContactListener {
         // Step the world
         world.step(delta, 6, 2);
 
-
-
-
         Array<Body> bodies = new Array<Body>();
         world.getBodies(bodies);
 
@@ -127,4 +124,10 @@ public class GameController implements ContactListener {
     public World getWorld() {
         return world;
     }
+
+    public static void reset(){
+        instance = null;
+    }
+
+
 }

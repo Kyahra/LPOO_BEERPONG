@@ -3,6 +3,8 @@ package com.beerpong.game;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.beerpong.game.controller.GameController;
+import com.beerpong.game.model.GameModel;
 import com.beerpong.game.view.GameView;
 
 public class BeerPong extends Game {
@@ -16,6 +18,8 @@ public class BeerPong extends Game {
 		assetManager = new AssetManager();
 		batch = new SpriteBatch();
 
+		GameController.reset();
+		GameModel.reset();
 
 		startGame();
 	}
