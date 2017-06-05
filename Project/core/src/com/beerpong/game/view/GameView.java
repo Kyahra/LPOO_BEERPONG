@@ -26,7 +26,7 @@ import com.beerpong.game.view.entities.EntityView;
 public class GameView extends ScreenAdapter implements GestureDetector.GestureListener {
     public static final float PIXEL_TO_METER =  0.007f;
     public static  int VIEWPORT_WIDTH =20;
-    private static final boolean DEBUG_PHYSICS = false;
+    private static final boolean DEBUG_PHYSICS = true;
 
     private final BeerPong game;
 
@@ -39,6 +39,7 @@ public class GameView extends ScreenAdapter implements GestureDetector.GestureLi
     private Matrix4 debugCamera;
 
     private Music music;
+
 
 
     public GameView(BeerPong game){
@@ -118,15 +119,17 @@ public class GameView extends ScreenAdapter implements GestureDetector.GestureLi
 
         EntityView view;
 
-        SimpleModel cup = GameModel.getInstance().getCup();
-        view = new EntityView(game, "cup2.png");
-        view.update(cup);
-        view.draw(game.getSpriteBatch());
 
         SimpleModel ball = GameModel.getInstance().getBall();
         view = new EntityView(game, "ball.png");
         view.update(ball);
         view.draw(game.getSpriteBatch());
+
+        SimpleModel cup = GameModel.getInstance().getCup();
+        view = new EntityView(game, "cup2.png");
+        view.update(cup);
+        view.draw(game.getSpriteBatch());
+
 
 
     }

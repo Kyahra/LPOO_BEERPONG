@@ -1,6 +1,9 @@
 package com.beerpong.game.controller.entities;
 
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.beerpong.game.model.entities.EntityModel;
 
@@ -26,15 +29,24 @@ public class CupBody extends EntityBody {
         bodyDef.position.set(model.getX(), model.getY());
         bodyDef.angle = model.getRotation();
 
-        body = world.createBody(bodyDef);
-        body.setUserData(model);
 
         float density = 2f, friction = 1f, restitution = 0f;
         int width = 234, height = 330;
 
 
         createFixture(body, new float[]{
-                0,0, 0,330,115,0, 234,330, 234,0
+                0,20, 40,330,55,330,15,20
         }, width, height, density, friction, restitution, CUP_BODY, (short) (BALL_BODY | LIMIT_BODY));
+
+        createFixture(body, new float[]{
+                30,300,30,330,204,330,204,300
+        }, width, height, density, friction, restitution, CUP_BODY, (short) (BALL_BODY | LIMIT_BODY));
+
+        createFixture(body, new float[]{
+                218,17,234,17,178,330,193,330
+        }, width, height, density, friction, restitution, CUP_BODY, (short) (BALL_BODY | LIMIT_BODY));
+
+
+
     }
 }
