@@ -6,8 +6,21 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.beerpong.game.controller.GameController;
 import com.beerpong.game.model.GameModel;
 import com.beerpong.game.view.GameView;
+import com.sun.org.apache.xpath.internal.operations.And;
 
-public class BeerPong extends Game {
+public class BeerPong extends Game  {
+
+
+	public interface AndroidAPIAdapter{
+		public void showScore();
+	}
+
+	AndroidAPIAdapter androidAPIAdapter;
+
+	public BeerPong(AndroidAPIAdapter androidAPIAdapter){
+		super();
+		this.androidAPIAdapter = androidAPIAdapter;
+	}
 
 	private AssetManager assetManager;
 	private SpriteBatch batch;
@@ -40,4 +53,9 @@ public class BeerPong extends Game {
 	}
 
 	public SpriteBatch getSpriteBatch(){return batch;}
+
+	public void showScore(){
+		if(androidAPIAdapter!=null)
+			androidAPIAdapter.showScore();
+	}
 }
