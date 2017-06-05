@@ -61,12 +61,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.startGame:
-
                 setContentView(R.layout.levelayout);
                 findViewById(R.id.easyButton).setOnClickListener(this);
                 findViewById(R.id.normalButton).setOnClickListener(this);
                 findViewById(R.id.difficultButton).setOnClickListener(this);
-
                 break;
             case R.id.easyButton:
                 startActivity(new Intent(this, AndroidLauncher.class));
