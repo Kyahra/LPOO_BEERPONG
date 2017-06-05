@@ -2,6 +2,7 @@ package com.beerpong.game;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.beerpong.game.controller.GameController;
 import com.beerpong.game.model.GameModel;
@@ -30,6 +31,9 @@ public class BeerPong extends Game  {
 	public void create () {
 		assetManager = new AssetManager();
 		batch = new SpriteBatch();
+
+		assetManager.load("audio/music/whiplash.mp3", Music.class);
+		assetManager.finishLoading();
 
 		GameController.reset();
 		GameModel.reset();

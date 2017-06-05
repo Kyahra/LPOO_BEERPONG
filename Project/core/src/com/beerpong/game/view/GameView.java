@@ -3,6 +3,7 @@ package com.beerpong.game.view;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -37,6 +38,7 @@ public class GameView extends ScreenAdapter implements GestureDetector.GestureLi
     private Box2DDebugRenderer debugRenderer;
     private Matrix4 debugCamera;
 
+    private Music music;
 
 
     public GameView(BeerPong game){
@@ -52,6 +54,9 @@ public class GameView extends ScreenAdapter implements GestureDetector.GestureLi
         Gdx.input.setInputProcessor(gestureDetecture);
 
         background = game.getAssetManager().get("background.png",Texture.class);
+        music = game.getAssetManager().get("audio/music/whiplash.mp3", Music.class);
+        music.setLooping(true);
+        music.play();
 
     }
 
