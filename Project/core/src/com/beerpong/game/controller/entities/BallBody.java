@@ -25,12 +25,12 @@ public class BallBody extends EntityBody {
 
 
         CircleShape circle = new CircleShape();
-        circle.setRadius(0.05f);
+        circle.setRadius(0.34f);
 
         // Create ball fixture
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = circle;
-        fixtureDef.density = .5f;      // how heavy is the ball
+        fixtureDef.density = .03f;      // how heavy is the ball
         fixtureDef.friction =  .5f;    // how slippery is the ball
         fixtureDef.restitution =  .5f; // how bouncy is the ball
         fixtureDef.filter.categoryBits = BALL_BODY;

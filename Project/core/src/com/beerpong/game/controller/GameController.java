@@ -99,7 +99,7 @@ public class GameController implements ContactListener {
     public void beginContact(Contact contact) {
 
         score += 55;
-
+       // if(contact.getFixtureA().getUserData())
 
         System.out.println(score);
 

@@ -17,6 +17,5 @@ public class AndroidLauncher extends AndroidApplication implements BeerPong.Andr
 
 	@Override
 	public void showScore() {
-		setContentView(R.layout.layout);
 	}
 }

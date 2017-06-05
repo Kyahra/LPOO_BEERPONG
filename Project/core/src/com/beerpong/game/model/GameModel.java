@@ -38,7 +38,7 @@ public class GameModel extends Stage {
 
         float ratio = ((float) Gdx.graphics.getHeight() / (float) Gdx.graphics.getWidth());
         ball = new SimpleModel(  VIEWPORT_WIDTH *ratio *0.2f,VIEWPORT_WIDTH/2 ,0, BALL);
-        cup = new SimpleModel( VIEWPORT_WIDTH *0.8f, VIEWPORT_WIDTH *0.1f , 0,CUP);
+        cup = new SimpleModel( VIEWPORT_WIDTH *0.8f, VIEWPORT_WIDTH *0.06f , 0,CUP);
 
 
         ground = new SimpleModel(0,0,0,LIMIT);
