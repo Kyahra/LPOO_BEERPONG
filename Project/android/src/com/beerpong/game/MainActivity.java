@@ -44,8 +44,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.helpButton).setOnClickListener(this);
 
         loginButton = (LoginButton)findViewById(R.id.fb_login_bn);
-        loginButton.setScaleX(2);
-        loginButton.setScaleY(2);
 
         ShareLinkContent content =  new ShareLinkContent.Builder().setContentUrl(Uri.parse("https://developers.facebook.com")).build();
         ShareButton shareButton = (ShareButton)findViewById(R.id.fb_share_button);
