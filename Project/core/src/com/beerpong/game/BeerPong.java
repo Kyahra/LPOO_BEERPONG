@@ -5,13 +5,14 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.beerpong.game.controller.GameController;
+import com.beerpong.game.controller.levels.EasyController;
 import com.beerpong.game.model.GameModel;
 import com.beerpong.game.view.GameView;
+import com.beerpong.game.view.levels.EasyView;
+
 
 
 public class BeerPong extends Game  {
-
-
 
 
 	public interface AndroidAPIAdapter{
@@ -19,10 +20,12 @@ public class BeerPong extends Game  {
 	}
 
 	AndroidAPIAdapter androidAPIAdapter;
+	int level;
 
-	public BeerPong(AndroidAPIAdapter androidAPIAdapter){
+	public BeerPong(AndroidAPIAdapter androidAPIAdapter, int level){
 		super();
 		this.androidAPIAdapter = androidAPIAdapter;
+		this.level = level;
 	}
 
 	private AssetManager assetManager;
@@ -34,9 +37,6 @@ public class BeerPong extends Game  {
 		assetManager = new AssetManager();
 		batch = new SpriteBatch();
 
-		assetManager.load("audio/music/whiplash.mp3", Music.class);
-		assetManager.finishLoading();
-
 		GameController.reset();
 		GameModel.reset();
 
@@ -47,7 +47,17 @@ public class BeerPong extends Game  {
 
 
 	public void startGame(){
-		setScreen(new GameView(this));
+
+
+		switch(level){
+			case 1:
+				setScreen(new GameView(this, new EasyView()));
+				GameController.getInstance().setLevel((new EasyController()));
+				break;
+
+
+		}
+
 
 	}
 

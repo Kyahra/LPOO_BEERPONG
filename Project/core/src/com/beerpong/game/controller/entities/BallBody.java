@@ -32,7 +32,7 @@ public class BallBody extends EntityBody {
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = circle;
         fixtureDef.density = .03f;      // how heavy is the ball
-        fixtureDef.friction =  .5f;    // how slippery is the ball
+        fixtureDef.friction =  .7f;    // how slippery is the ball
         fixtureDef.restitution =  .5f; // how bouncy is the ball
         fixtureDef.filter.categoryBits = BALL_BODY;
         fixtureDef.filter.maskBits = LIMIT_BODY | CUP_BODY;
@@ -43,4 +43,5 @@ public class BallBody extends EntityBody {
         // Dispose of circle shape
         circle.dispose();
     }
+
 }

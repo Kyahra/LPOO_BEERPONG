@@ -20,6 +20,7 @@ public class GameModel extends Stage {
     private  BallModel ball;
     private  CupModel cup;
 
+    // private SimpleModel table;
     private SimpleModel ground;
     private SimpleModel roof;
     private SimpleModel leftWall;
@@ -36,9 +37,11 @@ public class GameModel extends Stage {
 
 
         float ratio = ((float) Gdx.graphics.getHeight() / (float) Gdx.graphics.getWidth());
+
         ball = new BallModel(  VIEWPORT_WIDTH *ratio *0.2f,VIEWPORT_WIDTH/2 ,0);
         cup = new CupModel( VIEWPORT_WIDTH *0.8f, VIEWPORT_WIDTH *0.06f , 0);
 
+        // here initilize tabel model
 
         ground = new SimpleModel(0,0,0);
         leftWall = new SimpleModel(0,0,0);
@@ -55,9 +58,14 @@ public class GameModel extends Stage {
     public CupModel getCup() {return cup;}
 
     public SimpleModel getGround(){return ground;}
+
     public SimpleModel getRoof(){return roof;}
+
     public SimpleModel getLeftWall(){return leftWall;}
+
     public SimpleModel getRightWall(){return rightWall;}
+
+    // public SimpleModel getTabel(){ return tabel; }
 
     public static void reset(){
         instance = null;
