@@ -6,16 +6,13 @@ package com.beerpong.game.model.entities;
 
 public class SimpleModel extends EntityModel {
 
-    ModelType type;
 
-    public SimpleModel(float x, float y,float rotation, ModelType type){
+    public SimpleModel(float x, float y,float rotation){
         super(x,y,rotation);
-        this.type = type;
+
     }
 
-    public ModelType getType(){
-        return type;
-    }
+
 
 
 }

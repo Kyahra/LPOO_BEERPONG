@@ -10,7 +10,6 @@ package com.beerpong.game.model.entities;
  */
 public abstract class EntityModel {
 
-    public enum ModelType {BALL, CUP, LIMIT};
 
     /**
      * The x-coordinate of this model in meters.

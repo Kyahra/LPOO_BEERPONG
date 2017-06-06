@@ -2,6 +2,7 @@ package com.beerpong.game.controller;
 
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Cursor;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 
@@ -16,6 +17,8 @@ import com.beerpong.game.controller.entities.BallBody;
 import com.beerpong.game.controller.entities.CupBody;
 import com.beerpong.game.controller.entities.LimitBody;
 import com.beerpong.game.model.GameModel;
+import com.beerpong.game.model.entities.BallModel;
+import com.beerpong.game.model.entities.CupModel;
 import com.beerpong.game.model.entities.EntityModel;
 
 import static com.beerpong.game.view.GameView.VIEWPORT_WIDTH;
@@ -26,7 +29,7 @@ import static com.beerpong.game.view.GameView.VIEWPORT_WIDTH;
  */
 
 public class GameController implements ContactListener {
-
+    public static final float CUP_FLOOR_ID =  3f;
 
     private static GameController instance;
     private final World world;
@@ -35,6 +38,8 @@ public class GameController implements ContactListener {
 
     private int score =0;
 
+    private boolean gameWon = false;
+    private boolean gameLost = false;
     private boolean ballIsMoving = false;
 
 
@@ -87,21 +92,34 @@ public class GameController implements ContactListener {
             Vector2 vector = new Vector2(delta_X / 400, -delta_Y / 400);
             vector.rotateRad(ballBody.getAngle());
             ballBody.applyForceToCenter(delta_X / 400, -delta_Y / 400, true);
-            ballIsMoving = true;
+         //  ballIsMoving = true;
 
         }
 
     }
 
 
-
     @Override
     public void beginContact(Contact contact) {
 
-        score += 55;
-       // if(contact.getFixtureA().getUserData())
+        Body bodyA = contact.getFixtureA().getBody();
+        Body bodyB = contact.getFixtureB().getBody();
 
-        System.out.println(score);
+        if( bodyA.getUserData() instanceof BallModel || bodyB.getUserData() instanceof BallModel){
+
+
+            if(bodyB.getUserData() instanceof CupModel || bodyA.getUserData() instanceof CupModel) {
+                if(contact.getFixtureA().getDensity() == CUP_FLOOR_ID || contact.getFixtureA().getDensity() ==CUP_FLOOR_ID){
+                    gameWon = true;
+
+                }
+
+            }
+        }
+
+
+        score += 55;
+
 
     }
 
@@ -127,6 +145,11 @@ public class GameController implements ContactListener {
 
     public static void reset(){
         instance = null;
+    }
+
+    public boolean isOver(){
+        return gameWon;
+
     }
 
 

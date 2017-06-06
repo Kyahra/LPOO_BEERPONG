@@ -29,6 +29,9 @@ public class CupBody extends EntityBody {
         bodyDef.position.set(model.getX(), model.getY());
         bodyDef.angle = model.getRotation();
 
+       // body = world.createBody(bodyDef);
+        body.setUserData(model);
+
 
         float density = 2f, friction = 1f, restitution = 0f;
         int width = 234, height = 330;
@@ -40,7 +43,7 @@ public class CupBody extends EntityBody {
 
         createFixture(body, new float[]{
                 30,300,30,330,204,330,204,300
-        }, width, height, density, friction, restitution, CUP_BODY, (short) (BALL_BODY | LIMIT_BODY));
+        }, width, height, 3f, friction, restitution, CUP_BODY, (short) (BALL_BODY | LIMIT_BODY));
 
         createFixture(body, new float[]{
                 218,17,234,17,178,330,193,330
