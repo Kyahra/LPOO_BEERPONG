@@ -33,6 +33,7 @@
         android:layout_marginTop="38dp"
         android:background="@android:color/transparent"
         android:scaleType="fitXY"
+        android:onClick="playSound"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/play2"

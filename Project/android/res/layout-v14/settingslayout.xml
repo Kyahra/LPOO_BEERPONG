@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:baselineAligned="false"
@@ -16,7 +15,7 @@
         android:cropToPadding="false"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -30,22 +29,56 @@
         app:srcCompat="@drawable/settings"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="71dp"
-        android:layout_marginRight="42dp"
+        android:layout_marginRight="30dp"
         app:layout_constraintRight_toRightOf="parent" />
 
     <CheckBox
-        android:id="@+id/checkBox"
+        android:id="@+id/checkBoxMusic"
         style="@style/Theme.AppCompat.DayNight.DarkActionBar"
-        android:layout_width="115dp"
-        android:layout_height="109dp"
-        android:layout_marginRight="122dp"
-        android:layout_marginTop="291dp"
+        android:layout_width="31dp"
+        android:layout_height="35dp"
+        android:layout_marginRight="251dp"
+        android:layout_marginTop="295dp"
+        android:checked="true"
+        android:duplicateParentState="false"
+        android:scaleX="2"
+        android:scaleY="2"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <CheckBox
+        android:id="@+id/checkBoxSound"
+        style="@style/Theme.AppCompat.DayNight.DarkActionBar"
+        android:layout_width="31dp"
+        android:layout_height="35dp"
+        android:layout_marginRight="251dp"
+        android:layout_marginTop="402dp"
         android:checked="false"
         android:duplicateParentState="false"
         android:scaleX="2"
         android:scaleY="2"
-        android:text="CheckBox"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/music"
+        android:layout_width="210dp"
+        android:layout_height="107dp"
+        app:srcCompat="@drawable/music"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="256dp"
+        android:layout_marginRight="27dp"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <ImageView
+        android:id="@+id/sound"
+        android:layout_width="210dp"
+        android:layout_height="107dp"
+        app:srcCompat="@drawable/sound"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="365dp"
+        android:layout_marginRight="27dp"
+        app:layout_constraintRight_toRightOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
