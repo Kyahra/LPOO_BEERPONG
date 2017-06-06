@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.media.MediaPlayer;
+import android.widget.CheckBox;
 
 import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
@@ -27,7 +28,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     LoginButton loginButton;
     CallbackManager callBackManager;
     MediaPlayer music;
+    MediaPlayer sound;
     ShareButton shareButton;
+
 
     Stack<Integer> viewStack = new Stack<>();
 
@@ -49,10 +52,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ShareButton shareButton = (ShareButton)findViewById(R.id.fb_share_button);
         shareButton.setShareContent(content);
 
-
-        music = MediaPlayer.create(MainActivity.this, R.raw.whiplash);
-        music.setLooping(true);
-        music.start();
     }
 
 
@@ -63,6 +62,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         configMainLayout();
 
+        music = MediaPlayer.create(MainActivity.this, R.raw.whiplash);
+        music.setLooping(true);
+        music.start();
+
+        sound = MediaPlayer.create(MainActivity.this, R.raw.button);
     }
 
 /*
@@ -78,8 +82,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+
         switch(v.getId()){
             case R.id.startGame:
+                sound.start();
                 setContentView(R.layout.levelayout);
                 findViewById(R.id.easyButton).setOnClickListener(this);
                 findViewById(R.id.normalButton).setOnClickListener(this);
@@ -100,16 +106,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.helpButton:
                 setContentView(R.layout.helplayout);
+                music.stop();
                 viewStack.push(R.layout.helplayout);
                 break;
             case R.id.settingsButton:
                 setContentView(R.layout.settingslayout);
+                findViewById(R.id.checkBoxMusic).setOnClickListener(this);
                 viewStack.push(R.layout.settingslayout);
+                break;
+            case R.id.checkBoxMusic:
+                if(((CheckBox)v).isChecked()){
+                    music.start();
+                }
+                else {
+                    music.pause();
+                }
+
                 break;
             case R.id.exitButton:
                 System.exit(0);
         }
     }
+
+
+
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -136,4 +156,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
     }
+
+
 }
