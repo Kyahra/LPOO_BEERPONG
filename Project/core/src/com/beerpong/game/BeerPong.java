@@ -37,6 +37,7 @@ public class BeerPong extends Game  {
 		assetManager = new AssetManager();
 		batch = new SpriteBatch();
 
+
 		GameController.reset();
 		GameModel.reset();
 

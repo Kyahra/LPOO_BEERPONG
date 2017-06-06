@@ -59,9 +59,10 @@ public class GameView extends ScreenAdapter implements GestureDetector.GestureLi
 
         background = game.getAssetManager().get("background.png",Texture.class);
 
-        music = game.getAssetManager().get("audio/music/whiplash.mp3", Music.class);
-        music.setLooping(true);
-        music.play();
+        //music = game.getAssetManager().get("audio/music/whiplash.mp3", Music.class);
+        //music.setLooping(true);
+        //music.play();
+
 
     }
 
