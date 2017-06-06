@@ -2,14 +2,14 @@ package com.beerpong.game;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.beerpong.game.controller.GameController;
 import com.beerpong.game.controller.levels.EasyController;
+import com.beerpong.game.controller.levels.MediumController;
 import com.beerpong.game.model.GameModel;
 import com.beerpong.game.view.GameView;
 import com.beerpong.game.view.levels.EasyView;
-
+import com.beerpong.game.view.levels.MediumView;
 
 
 public class BeerPong extends Game  {
@@ -54,6 +54,10 @@ public class BeerPong extends Game  {
 			case 1:
 				setScreen(new GameView(this, new EasyView()));
 				GameController.getInstance().setLevel((new EasyController()));
+				break;
+			case 2:
+				setScreen(new GameView(this, new MediumView()));
+				GameController.getInstance().setLevel(((new MediumController())));
 				break;
 
 

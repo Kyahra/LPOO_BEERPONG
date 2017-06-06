@@ -8,6 +8,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.media.MediaPlayer;
 
+import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
 import com.facebook.login.widget.LoginButton;
@@ -87,10 +88,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 viewStack.push(R.layout.levelayout);
                 break;
             case R.id.easyButton:
+                AndroidLauncher.setLevel(1);
                 startActivity(new Intent(this, AndroidLauncher.class));
                 viewStack.push(R.layout.levelayout);
                 break;
             case R.id.normalButton:
+                AndroidLauncher.setLevel(2);
                 startActivity(new Intent(this, AndroidLauncher.class));
                 viewStack.push(R.layout.levelayout);
                 break;
