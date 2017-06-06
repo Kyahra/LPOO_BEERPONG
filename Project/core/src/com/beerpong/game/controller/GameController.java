@@ -2,13 +2,13 @@ package com.beerpong.game.controller;
 
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Cursor;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
+import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.World;
 
@@ -16,6 +16,8 @@ import com.badlogic.gdx.utils.Array;
 import com.beerpong.game.controller.entities.BallBody;
 import com.beerpong.game.controller.entities.CupBody;
 import com.beerpong.game.controller.entities.LimitBody;
+
+import com.beerpong.game.controller.levels.LevelController;
 import com.beerpong.game.model.GameModel;
 import com.beerpong.game.model.entities.BallModel;
 import com.beerpong.game.model.entities.CupModel;
@@ -34,23 +36,23 @@ public class GameController implements ContactListener {
     private static GameController instance;
     private final World world;
     private final BallBody ballBody;
-    private final CupBody cupBody;
+    private LevelController level;
+
 
     private int score =0;
 
     private boolean gameWon = false;
-    private boolean gameLost = false;
     private boolean ballIsMoving = false;
 
 
     private GameController(){
+
         world = new World(new Vector2(0,-10),true);
 
         ballBody = new BallBody(world, GameModel.getInstance().getBall());
-        cupBody  = new CupBody(world, GameModel.getInstance().getCup());
-
 
         float ratio = ((float) Gdx.graphics.getHeight() / (float) Gdx.graphics.getWidth());
+        new CupBody(world, GameModel.getInstance().getCup());
 
         new LimitBody(world,GameModel.getInstance().getGround(), VIEWPORT_WIDTH*ratio*2, VIEWPORT_WIDTH*0.05f );
         new LimitBody(world,GameModel.getInstance().getLeftWall(),VIEWPORT_WIDTH*ratio*0.1f,VIEWPORT_WIDTH);
@@ -92,7 +94,7 @@ public class GameController implements ContactListener {
             Vector2 vector = new Vector2(delta_X / 400, -delta_Y / 400);
             vector.rotateRad(ballBody.getAngle());
             ballBody.applyForceToCenter(delta_X / 400, -delta_Y / 400, true);
-         //  ballIsMoving = true;
+            ballIsMoving = true;
 
         }
 
@@ -101,25 +103,23 @@ public class GameController implements ContactListener {
 
     @Override
     public void beginContact(Contact contact) {
+        Fixture fixtureA = contact.getFixtureA();
+        Fixture fixtureB = contact.getFixtureB();
 
-        Body bodyA = contact.getFixtureA().getBody();
-        Body bodyB = contact.getFixtureB().getBody();
-
-        if( bodyA.getUserData() instanceof BallModel || bodyB.getUserData() instanceof BallModel){
-
-
-            if(bodyB.getUserData() instanceof CupModel || bodyA.getUserData() instanceof CupModel) {
-                if(contact.getFixtureA().getDensity() == CUP_FLOOR_ID || contact.getFixtureA().getDensity() ==CUP_FLOOR_ID){
-                    gameWon = true;
-
-                }
-
-            }
-        }
-
+        checkBallInsideCup(fixtureA, fixtureB);
+        checkBallInsideCup(fixtureB, fixtureA);
 
         score += 55;
 
+
+    }
+
+    private void checkBallInsideCup(Fixture ball, Fixture cup) {
+
+        if(ball.getBody().getUserData() instanceof BallModel)
+            if(cup.getBody().getUserData() instanceof CupModel)
+                if(cup.getDensity() == CUP_FLOOR_ID)
+                gameWon = true;
 
     }
 
@@ -144,13 +144,24 @@ public class GameController implements ContactListener {
     }
 
     public static void reset(){
+
         instance = null;
+
+
     }
 
     public boolean isOver(){
+       ;
+        if(ballIsMoving && ballBody.getLinearVelocity().isZero(0.5f))
+            return true;
+
         return gameWon;
 
     }
 
+
+    public void setLevel(LevelController level) {
+        this.level = level;
+    }
 
 }

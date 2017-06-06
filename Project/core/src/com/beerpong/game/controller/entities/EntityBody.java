@@ -1,6 +1,7 @@
 package com.beerpong.game.controller.entities;
 
 
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
@@ -161,4 +162,10 @@ public abstract class EntityBody {
         return body.getUserData();
 
     }
+
+    public Vector2 getLinearVelocity(){
+        return body.getLinearVelocity();
+    }
+
+
 }

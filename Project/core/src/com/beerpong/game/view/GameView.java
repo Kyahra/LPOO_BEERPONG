@@ -17,8 +17,8 @@ import com.beerpong.game.controller.GameController;
 import com.beerpong.game.model.GameModel;
 import com.beerpong.game.model.entities.BallModel;
 import com.beerpong.game.model.entities.CupModel;
-import com.beerpong.game.model.entities.SimpleModel;
 import com.beerpong.game.view.entities.EntityView;
+import com.beerpong.game.view.levels.LevelView;
 
 
 /**
@@ -28,38 +28,41 @@ import com.beerpong.game.view.entities.EntityView;
 public class GameView extends ScreenAdapter implements GestureDetector.GestureListener {
     public static final float PIXEL_TO_METER =  0.007f;
     public static  int VIEWPORT_WIDTH =20;
-    private static final boolean DEBUG_PHYSICS = false;
+    private static final boolean DEBUG_PHYSICS = true;
 
     private final BeerPong game;
-
+    private final LevelView level;
 
     private GestureDetector gestureDetecture;
-    Texture background;
+
 
     private final OrthographicCamera camera;
     private Box2DDebugRenderer debugRenderer;
     private Matrix4 debugCamera;
 
     private Music music;
+    Texture background;
 
 
 
-    public GameView(BeerPong game){
+
+    public GameView(BeerPong game, LevelView level){
         this.game = game;
+        this.level = level;
 
         loadAssets();
 
         camera = createCamera();
 
-
-
         gestureDetecture = new GestureDetector(this);
         Gdx.input.setInputProcessor(gestureDetecture);
 
         background = game.getAssetManager().get("background.png",Texture.class);
+
         //music = game.getAssetManager().get("audio/music/whiplash.mp3", Music.class);
         //music.setLooping(true);
         //music.play();
+
 
     }
 
@@ -79,12 +82,15 @@ public class GameView extends ScreenAdapter implements GestureDetector.GestureLi
     }
 
     private void loadAssets() {
-
+        game.getAssetManager().load("audio/music/whiplash.mp3", Music.class);
         game.getAssetManager().load("background.png", Texture.class);
         game.getAssetManager().load("ball.png",Texture.class);
         game.getAssetManager().load("cup2.png",Texture.class);
+
         game.getAssetManager().finishLoading();
     }
+
+
 
     @Override
     public void render(float delta){
@@ -99,9 +105,9 @@ public class GameView extends ScreenAdapter implements GestureDetector.GestureLi
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
         
         game.getSpriteBatch().begin();
-
         drawBackground();
         drawEntities();
+        level.drawEntities(game);
         game.getSpriteBatch().end();
 
         if (DEBUG_PHYSICS) {
@@ -116,14 +122,8 @@ public class GameView extends ScreenAdapter implements GestureDetector.GestureLi
 
     }
 
-    private void drawBackground() {
-        game.getSpriteBatch().draw(background,0,0,camera.viewportWidth,camera.viewportHeight);
-    }
-
-    private void drawEntities(){
-
+    public void drawEntities() {
         EntityView view;
-
 
         BallModel ball = GameModel.getInstance().getBall();
         view = new EntityView(game, "ball.png");
@@ -135,9 +135,13 @@ public class GameView extends ScreenAdapter implements GestureDetector.GestureLi
         view.update(cup);
         view.draw(game.getSpriteBatch());
 
-
-
     }
+
+    private void drawBackground() {
+        game.getSpriteBatch().draw(background,0,0,camera.viewportWidth,camera.viewportHeight);
+    }
+
+
 
     @Override
     public boolean touchDown(float x, float y, int pointer, int button) {
@@ -186,4 +190,6 @@ public class GameView extends ScreenAdapter implements GestureDetector.GestureLi
     public void pinchStop() {
 
     }
+
+   
 }
