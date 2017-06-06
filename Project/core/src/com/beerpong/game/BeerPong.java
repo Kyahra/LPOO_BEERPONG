@@ -32,8 +32,8 @@ public class BeerPong extends Game  {
 		assetManager = new AssetManager();
 		batch = new SpriteBatch();
 
-		assetManager.load("audio/music/whiplash.mp3", Music.class);
-		assetManager.finishLoading();
+		//assetManager.load("audio/music/whiplash.mp3", Music.class);
+		//assetManager.finishLoading();
 
 		GameController.reset();
 		GameModel.reset();
