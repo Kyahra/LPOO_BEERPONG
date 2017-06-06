@@ -3,12 +3,10 @@ package com.beerpong.game.model;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.beerpong.game.model.entities.EntityModel;
+import com.beerpong.game.model.entities.BallModel;
+import com.beerpong.game.model.entities.CupModel;
 import com.beerpong.game.model.entities.SimpleModel;
 
-import static com.beerpong.game.model.entities.EntityModel.ModelType.BALL;
-import static com.beerpong.game.model.entities.EntityModel.ModelType.CUP;
-import static com.beerpong.game.model.entities.EntityModel.ModelType.LIMIT;
 import static com.beerpong.game.view.GameView.VIEWPORT_WIDTH;
 
 
@@ -19,13 +17,14 @@ import static com.beerpong.game.view.GameView.VIEWPORT_WIDTH;
 public class GameModel extends Stage {
     private static GameModel instance;
 
-    private static SimpleModel ball;
+    private  BallModel ball;
+    private  CupModel cup;
 
     private SimpleModel ground;
     private SimpleModel roof;
     private SimpleModel leftWall;
     private SimpleModel rightWall;
-    private SimpleModel cup;
+
 
     public static GameModel getInstance() {
         if (instance == null)
@@ -37,23 +36,23 @@ public class GameModel extends Stage {
 
 
         float ratio = ((float) Gdx.graphics.getHeight() / (float) Gdx.graphics.getWidth());
-        ball = new SimpleModel(  VIEWPORT_WIDTH *ratio *0.2f,VIEWPORT_WIDTH/2 ,0, BALL);
-        cup = new SimpleModel( VIEWPORT_WIDTH *0.8f, VIEWPORT_WIDTH *0.06f , 0,CUP);
+        ball = new BallModel(  VIEWPORT_WIDTH *ratio *0.2f,VIEWPORT_WIDTH/2 ,0);
+        cup = new CupModel( VIEWPORT_WIDTH *0.8f, VIEWPORT_WIDTH *0.06f , 0);
 
 
-        ground = new SimpleModel(0,0,0,LIMIT);
-        leftWall = new SimpleModel(0,0,0,LIMIT);
-        roof = new SimpleModel(0,VIEWPORT_WIDTH *ratio,0,LIMIT);
-        rightWall = new SimpleModel(VIEWPORT_WIDTH ,0,0,LIMIT);
+        ground = new SimpleModel(0,0,0);
+        leftWall = new SimpleModel(0,0,0);
+        roof = new SimpleModel(0,VIEWPORT_WIDTH *ratio,0);
+        rightWall = new SimpleModel(VIEWPORT_WIDTH ,0,0);
 
 
     }
 
-    public SimpleModel getBall(){
+    public BallModel getBall(){
         return ball;
     }
 
-    public SimpleModel getCup() {return cup;}
+    public CupModel getCup() {return cup;}
 
     public SimpleModel getGround(){return ground;}
     public SimpleModel getRoof(){return roof;}

@@ -1,5 +1,6 @@
 package com.beerpong.game;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.badlogic.gdx.backends.android.AndroidApplication;
@@ -17,5 +18,8 @@ public class AndroidLauncher extends AndroidApplication implements BeerPong.Andr
 
 	@Override
 	public void showScore() {
+		Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		startActivity(intent);
 	}
 }

@@ -4,6 +4,7 @@ package com.beerpong.game.controller.entities;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
+import com.beerpong.game.model.entities.EntityModel;
 import com.beerpong.game.model.entities.SimpleModel;
 
 
@@ -20,7 +21,7 @@ public class BallBody extends EntityBody {
      * @param world the physical world this space ship belongs to.
      * @param model the model representing this space ship.
      */
-    public BallBody(World world, SimpleModel model) {
+    public BallBody(World world, EntityModel model) {
         super(world, model);
 
 
