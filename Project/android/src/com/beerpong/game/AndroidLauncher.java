@@ -18,12 +18,10 @@ public class AndroidLauncher extends AndroidApplication implements BeerPong.Andr
 
 	@Override
 	public void showScore() {
-<<<<<<< HEAD
 
-=======
 		Intent intent = new Intent(getApplicationContext(), MainActivity.class);
 		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		startActivity(intent);
->>>>>>> 1d77faf9d2abc6f8f7039996eb4b7fffc7da9971
+
 	}
 }
