@@ -1,6 +1,7 @@
 package com.beerpong.game.controller.entities;
 
 
+import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
@@ -22,7 +23,13 @@ public class BallBody extends EntityBody {
      * @param model the model representing this space ship.
      */
     public BallBody(World world, EntityModel model) {
-        super(world, model);
+        BodyDef bodyDef = new BodyDef();
+        bodyDef.type = BodyDef.BodyType.DynamicBody;
+        bodyDef.position.set(model.getX(), model.getY());
+        bodyDef.angle = model.getRotation();
+
+        body = world.createBody(bodyDef);
+        body.setUserData(model);
 
 
         CircleShape circle = new CircleShape();

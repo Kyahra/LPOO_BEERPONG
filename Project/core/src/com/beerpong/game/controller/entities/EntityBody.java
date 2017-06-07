@@ -34,15 +34,7 @@ public abstract class EntityBody {
      * @param world The world this body lives on.
      * @param model The model representing the body.
      */
-    EntityBody(World world, EntityModel model) {
-        BodyDef bodyDef = new BodyDef();
-        bodyDef.type = BodyDef.BodyType.DynamicBody;
-        bodyDef.position.set(model.getX(), model.getY());
-        bodyDef.angle = model.getRotation();
 
-        body = world.createBody(bodyDef);
-        body.setUserData(model);
-    }
 
     /**
      * Helper method to create a polygon fixture represented by a set of vertexes.

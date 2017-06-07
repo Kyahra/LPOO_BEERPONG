@@ -28,7 +28,7 @@ import com.beerpong.game.view.levels.LevelView;
 public class GameView extends ScreenAdapter implements GestureDetector.GestureListener {
     public static final float PIXEL_TO_METER =  0.007f;
     public static  int VIEWPORT_WIDTH =20;
-    private static final boolean DEBUG_PHYSICS = true;
+    private static final boolean DEBUG_PHYSICS = false;
 
     private final BeerPong game;
     private final LevelView level;
@@ -82,10 +82,12 @@ public class GameView extends ScreenAdapter implements GestureDetector.GestureLi
     }
 
     private void loadAssets() {
+
         game.getAssetManager().load("audio/music/whiplash.mp3", Music.class);
         game.getAssetManager().load("background.png", Texture.class);
         game.getAssetManager().load("ball.png",Texture.class);
-        game.getAssetManager().load("cup2.png",Texture.class);
+        game.getAssetManager().load("cup.png",Texture.class);
+        game.getAssetManager().load("table.png", Texture.class);
 
         game.getAssetManager().finishLoading();
     }
@@ -131,7 +133,7 @@ public class GameView extends ScreenAdapter implements GestureDetector.GestureLi
         view.draw(game.getSpriteBatch());
 
         CupModel cup = GameModel.getInstance().getCup();
-        view = new EntityView(game, "cup2.png");
+        view = new EntityView(game, "cup.png");
         view.update(cup);
         view.draw(game.getSpriteBatch());
 
