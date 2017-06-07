@@ -38,7 +38,7 @@ public class BallBody extends EntityBody {
         // Create ball fixture
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = circle;
-        fixtureDef.density = .03f;      // how heavy is the ball
+        fixtureDef.density = .04f;      // how heavy is the ball
         fixtureDef.friction =  .7f;    // how slippery is the ball
         fixtureDef.restitution =  .5f; // how bouncy is the ball
         fixtureDef.filter.categoryBits = BALL_BODY;
