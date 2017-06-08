@@ -1,6 +1,7 @@
 package com.beerpong.game;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.beerpong.game.controller.GameController;
@@ -30,6 +31,7 @@ public class BeerPong extends Game  {
 
 	private AssetManager assetManager;
 	private SpriteBatch batch;
+	private	static boolean exited = false;
 
 
 	@Override
@@ -62,14 +64,21 @@ public class BeerPong extends Game  {
 
 
 		}
-
-
 	}
 
 	@Override
 	public void dispose(){
 		batch.dispose();
 		assetManager.dispose();
+		exited = true;
+	}
+
+	public static boolean isExited() {
+		return exited;
+	}
+
+	public static void setExited(boolean exited) {
+		exited = exited;
 	}
 
 	public AssetManager getAssetManager(){
@@ -79,8 +88,8 @@ public class BeerPong extends Game  {
 	public SpriteBatch getSpriteBatch(){return batch;}
 
 	public void showScore(){
-
-		if(androidAPIAdapter!=null)
-			androidAPIAdapter.showScore();
+		Gdx.app.exit();
+		//if(androidAPIAdapter!=null)
+			//androidAPIAdapter.showScore();
 	}
 }

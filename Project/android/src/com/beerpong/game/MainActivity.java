@@ -1,6 +1,7 @@
 package com.beerpong.game;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.media.MediaPlayer;
 import android.widget.CheckBox;
 
+import com.badlogic.gdx.ai.btree.utils.BehaviorTreeReader;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
@@ -33,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ShareButton shareButton;
     boolean soundAvailable;
 
+    static final int PICK_CONTACT_REQUEST = 1;
 
     Stack<Integer> viewStack = new Stack<>();
 
@@ -42,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         viewStack.push(R.layout.mainlayout);
 
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.mainlayout);
         findViewById(R.id.startGame).setOnClickListener(this);
         findViewById(R.id.exitButton).setOnClickListener(this);
@@ -70,6 +74,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         sound = MediaPlayer.create(MainActivity.this, R.raw.button);
         soundAvailable = true;
+
+
     }
 
 /*
@@ -82,13 +88,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 */
 
+    @Override
+    public void onResume (){
+        super.onResume();
+        if(BeerPong.isExited()) {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+            setContentView(R.layout.scorelayout);
+            BeerPong.setExited(false);
+        }
+    }
+
 
     @Override
     public void onClick(View v) {
 
         switch(v.getId()){
             case R.id.startGame:
-                playSound();
+                playSound();setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                 setContentView(R.layout.levelayout);
                 findViewById(R.id.easyButton).setOnClickListener(this);
                 findViewById(R.id.normalButton).setOnClickListener(this);
@@ -98,7 +114,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.easyButton:
                 playSound();
                 AndroidLauncher.setLevel(1);
-                startActivity(new Intent(this, AndroidLauncher.class));
+                Intent intent = new Intent(this, AndroidLauncher.class);
+                //startActivity(new Intent(this, AndroidLauncher.class));
+                startActivityForResult(intent,PICK_CONTACT_REQUEST);
+
+                setContentView(R.layout.scorelayout);
                 viewStack.push(R.layout.levelayout);
                 break;
             case R.id.normalButton:
@@ -109,7 +129,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.difficultButton:
                 playSound();
-                startActivity(new Intent(this, AndroidLauncher.class));
+                //startActivity(new Intent(this, AndroidLauncher.class));
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                setContentView(R.layout.scorelayout);
                 viewStack.push(R.layout.levelayout);
                 break;
             case R.id.helpButton:
@@ -139,6 +161,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 playSound();
                 System.exit(0);
         }
+
     }
 
 
@@ -174,6 +197,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
+        if (requestCode == PICK_CONTACT_REQUEST) {
+
+            if (resultCode == RESULT_OK) {
+
+                setContentView(R.layout.scorelayout);
+            }
+        }
     }
 
 

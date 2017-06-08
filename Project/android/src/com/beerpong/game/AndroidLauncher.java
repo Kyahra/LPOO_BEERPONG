@@ -18,15 +18,6 @@ public class AndroidLauncher extends AndroidApplication implements BeerPong.Andr
 		super.onCreate(savedInstanceState);
 		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
 		initialize(new BeerPong(this, level), config);
-	}
-
-
-	@Override
-	public void showScore() {
-
-		Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-		startActivity(intent);
 
 	}
 
@@ -34,6 +25,11 @@ public class AndroidLauncher extends AndroidApplication implements BeerPong.Andr
 
 	public  static void setLevel(int level){
 		AndroidLauncher.level = level;
+
+	}
+
+	@Override
+	public void showScore() {
 
 	}
 }
