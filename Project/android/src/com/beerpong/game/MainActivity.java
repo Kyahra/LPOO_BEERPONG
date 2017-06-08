@@ -92,8 +92,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onResume (){
         super.onResume();
         if(BeerPong.isExited()) {
+
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
             setContentView(R.layout.scorelayout);
+
+            ShareLinkContent content =  new ShareLinkContent.Builder().setContentUrl(Uri.parse("https://developers.facebook.com")).build();
+            ShareButton shareButton = (ShareButton)findViewById(R.id.fb_share_button);
+            shareButton.setShareContent(content);
+
             BeerPong.setExited(false);
         }
     }
