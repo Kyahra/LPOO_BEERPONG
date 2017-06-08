@@ -59,6 +59,8 @@ public class GameView extends ScreenAdapter implements GestureDetector.GestureLi
 
         background = game.getAssetManager().get("background.png",Texture.class);
 
+
+
         //music = game.getAssetManager().get("audio/music/whiplash.mp3", Music.class);
         //music.setLooping(true);
         //music.play();
@@ -101,6 +103,7 @@ public class GameView extends ScreenAdapter implements GestureDetector.GestureLi
 
 
         camera.update();
+        this.level.updateCamera(camera);
         game.getSpriteBatch().setProjectionMatrix(camera.combined);
         
         Gdx.gl.glClearColor(0,0,0,0);

@@ -104,6 +104,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 viewStack.push(R.layout.levelayout);
                 break;
             case R.id.difficultButton:
+                AndroidLauncher.setLevel(3);
                 startActivity(new Intent(this, AndroidLauncher.class));
                 viewStack.push(R.layout.levelayout);
                 break;
