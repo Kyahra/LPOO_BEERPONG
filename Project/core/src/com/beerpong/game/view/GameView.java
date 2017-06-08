@@ -28,7 +28,7 @@ import com.beerpong.game.view.levels.LevelView;
 public class GameView extends ScreenAdapter implements GestureDetector.GestureListener {
     public static final float PIXEL_TO_METER =  0.007f;
     public static  int VIEWPORT_WIDTH =20;
-    private static final boolean DEBUG_PHYSICS = false;
+    private static final boolean DEBUG_PHYSICS = true;
 
     private final BeerPong game;
     private final LevelView level;
