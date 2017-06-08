@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     MediaPlayer music;
     MediaPlayer sound;
     ShareButton shareButton;
+    boolean soundAvailable;
 
 
     Stack<Integer> viewStack = new Stack<>();
@@ -68,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         music.start();
 
         sound = MediaPlayer.create(MainActivity.this, R.raw.button);
+        soundAvailable = true;
     }
 
 /*
@@ -86,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         switch(v.getId()){
             case R.id.startGame:
-                sound.start();
+                playSound();
                 setContentView(R.layout.levelayout);
                 findViewById(R.id.easyButton).setOnClickListener(this);
                 findViewById(R.id.normalButton).setOnClickListener(this);
@@ -94,44 +96,61 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 viewStack.push(R.layout.levelayout);
                 break;
             case R.id.easyButton:
+                playSound();
                 AndroidLauncher.setLevel(1);
                 startActivity(new Intent(this, AndroidLauncher.class));
                 viewStack.push(R.layout.levelayout);
                 break;
             case R.id.normalButton:
+                playSound();
                 AndroidLauncher.setLevel(2);
                 startActivity(new Intent(this, AndroidLauncher.class));
                 viewStack.push(R.layout.levelayout);
                 break;
             case R.id.difficultButton:
+<<<<<<< HEAD
                 AndroidLauncher.setLevel(3);
+=======
+                playSound();
+>>>>>>> 43e9fb8f2abbac7e253bd20bbcab4da429f04051
                 startActivity(new Intent(this, AndroidLauncher.class));
                 viewStack.push(R.layout.levelayout);
                 break;
             case R.id.helpButton:
+                playSound();
                 setContentView(R.layout.helplayout);
-                music.stop();
                 viewStack.push(R.layout.helplayout);
                 break;
             case R.id.settingsButton:
+                playSound();
                 setContentView(R.layout.settingslayout);
                 findViewById(R.id.checkBoxMusic).setOnClickListener(this);
                 viewStack.push(R.layout.settingslayout);
                 break;
             case R.id.checkBoxMusic:
-                if(((CheckBox)v).isChecked()){
-                    music.start();
-                }
-                else {
-                    music.pause();
-                }
+                playSound();
+                if(((CheckBox)v).isChecked()) music.start();
+                else music.pause();
+                break;
+            case R.id.checkBoxSound:
+               /* if(((CheckBox)v).isChecked()) soundAvailable = true;
+                else soundAvailable = false;
+                break;*/
+                if(((CheckBox)v).isChecked()) sound.start();
 
                 break;
             case R.id.exitButton:
+                playSound();
                 System.exit(0);
         }
     }
 
+
+    public void playSound(){
+
+        if(soundAvailable)
+            sound.start();
+    }
 
 
 
