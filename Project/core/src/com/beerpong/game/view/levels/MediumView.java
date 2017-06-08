@@ -1,6 +1,7 @@
 package com.beerpong.game.view.levels;
 
-import com.badlogic.gdx.graphics.Camera;
+
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.beerpong.game.BeerPong;
 import com.beerpong.game.model.GameModel;
 import com.beerpong.game.model.entities.SimpleModel;
@@ -12,7 +13,7 @@ import com.beerpong.game.view.entities.EntityView;
 
 public class MediumView implements LevelView {
     @Override
-    public void updateCamera(Camera camera) {
+    public void updateCamera(OrthographicCamera camera) {
 
     }
 

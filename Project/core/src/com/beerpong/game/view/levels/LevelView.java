@@ -1,6 +1,7 @@
 package com.beerpong.game.view.levels;
 
-import com.badlogic.gdx.graphics.Camera;
+
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.beerpong.game.BeerPong;
 
 /**
@@ -9,7 +10,7 @@ import com.beerpong.game.BeerPong;
 
 public interface LevelView {
 
-    public void updateCamera(Camera camera);
+    public void updateCamera(OrthographicCamera camera);
     public void drawEntities(BeerPong game);
 
 

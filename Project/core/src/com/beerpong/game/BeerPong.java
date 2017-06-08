@@ -10,6 +10,7 @@ import com.beerpong.game.controller.levels.MediumController;
 import com.beerpong.game.model.GameModel;
 import com.beerpong.game.view.GameView;
 import com.beerpong.game.view.levels.EasyView;
+import com.beerpong.game.view.levels.HardView;
 import com.beerpong.game.view.levels.MediumView;
 
 
@@ -60,6 +61,12 @@ public class BeerPong extends Game  {
 			case 2:
 				GameController.setLevel(((new MediumController())));
 				setScreen(new GameView(this, new MediumView()));
+				break;
+			case 3:
+				GameController.setLevel(((new EasyController())));
+				setScreen(new GameView(this,new HardView()));
+				break;
+			default:
 				break;
 
 

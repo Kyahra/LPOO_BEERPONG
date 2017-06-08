@@ -41,7 +41,7 @@ public class GameModel extends Stage {
         ball = new BallModel(  VIEWPORT_WIDTH *ratio *0.2f,VIEWPORT_WIDTH/2 ,0);
         cup = new CupModel( VIEWPORT_WIDTH *0.8f, VIEWPORT_WIDTH *0.1f , 0);
 
-        table = new SimpleModel(VIEWPORT_WIDTH/2,VIEWPORT_WIDTH*ratio/3.8f,0);
+        table = new SimpleModel(VIEWPORT_WIDTH/2,VIEWPORT_WIDTH*ratio/3.6f,0);
 
         ground = new SimpleModel(0,0,0);
         leftWall = new SimpleModel(0,0,0);
