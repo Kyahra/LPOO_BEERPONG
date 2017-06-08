@@ -16,7 +16,7 @@ public class LimitBody extends EntityBody {
 
 
     public LimitBody(World world, EntityModel model, float width, float height) {
-        super(world, model);
+
 
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.StaticBody;

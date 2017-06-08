@@ -52,12 +52,12 @@ public class BeerPong extends Game  {
 
 		switch(level){
 			case 1:
+				GameController.setLevel((new EasyController()));
 				setScreen(new GameView(this, new EasyView()));
-				GameController.getInstance().setLevel((new EasyController()));
 				break;
 			case 2:
+				GameController.setLevel(((new MediumController())));
 				setScreen(new GameView(this, new MediumView()));
-				GameController.getInstance().setLevel(((new MediumController())));
 				break;
 
 

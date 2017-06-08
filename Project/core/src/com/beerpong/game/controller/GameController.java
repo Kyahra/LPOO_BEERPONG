@@ -36,7 +36,7 @@ public class GameController implements ContactListener {
     private static GameController instance;
     private final World world;
     private final BallBody ballBody;
-    private LevelController level;
+    private static LevelController level;
 
 
     private int score =0;
@@ -58,6 +58,8 @@ public class GameController implements ContactListener {
         new LimitBody(world,GameModel.getInstance().getLeftWall(),VIEWPORT_WIDTH*ratio*0.1f,VIEWPORT_WIDTH);
         new LimitBody(world,GameModel.getInstance().getRoof(),VIEWPORT_WIDTH*ratio*2,VIEWPORT_WIDTH*0.01f);
         new LimitBody(world,GameModel.getInstance().getRightWall(),VIEWPORT_WIDTH*ratio*0.1f,VIEWPORT_WIDTH);
+
+        level.initializeElements(world);
 
 
         world.setContactListener(this);
@@ -160,8 +162,9 @@ public class GameController implements ContactListener {
     }
 
 
-    public void setLevel(LevelController level) {
-        this.level = level;
+    public static void setLevel(LevelController level) {
+
+        GameController.level = level;
     }
 
 }
