@@ -134,25 +134,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 viewStack.push(R.layout.levelayout);
                 break;
             case R.id.difficultButton:
-<<<<<<< HEAD
-                playSound();
-                AndroidLauncher.setLevel(3);
-                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-                setContentView(R.layout.scorelayout);
-                startActivity(new Intent(this, AndroidLauncher.class));
-=======
-
-                AndroidLauncher.setLevel(3);
 
                 playSound();
-
-                //startActivity(new Intent(this, AndroidLauncher.class));
-                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-                setContentView(R.layout.scorelayout);
-
+                AndroidLauncher.setLevel(3);
                 startActivity(new Intent(this, AndroidLauncher.class));
-
->>>>>>> f0fa70c2d894f41a634b99f3fb8303d4788ac10b
                 viewStack.push(R.layout.levelayout);
                 break;
             case R.id.helpButton:
