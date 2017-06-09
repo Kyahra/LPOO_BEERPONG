@@ -5,14 +5,14 @@ import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+
 import android.view.KeyEvent;
 import android.view.View;
 import android.media.MediaPlayer;
 import android.widget.CheckBox;
 
-import com.badlogic.gdx.ai.btree.utils.BehaviorTreeReader;
-import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
-import com.facebook.CallbackManager;
+
+
 import com.facebook.FacebookSdk;
 import com.facebook.login.widget.LoginButton;
 import com.facebook.share.model.ShareLinkContent;
@@ -26,19 +26,17 @@ import java.util.Stack;
  */
 
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener,BeerPong.AndroidAPIAdapter {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
 
-    private int score;
+    private static MainActivity instance;
+    private int score =0;
 
     LoginButton loginButton;
-    CallbackManager callBackManager;
     MediaPlayer music;
     MediaPlayer sound;
-    ShareButton shareButton;
-    boolean soundAvailable;
 
-    static final int PICK_CONTACT_REQUEST = 1;
+    boolean soundAvailable;
 
     Stack<Integer> viewStack = new Stack<>();
 
@@ -63,6 +61,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    public static MainActivity getInstance() {
+        if(instance == null)
+            instance = new MainActivity();
+        return instance;
+
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -79,6 +84,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         soundAvailable = true;
 
 
+            instance = this;
+
+
+
     }
 
 
@@ -86,6 +95,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onResume (){
         super.onResume();
         if(BeerPong.isExited()) {
+
+            System.out.println("SCORE:" + score);
+
 
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
             setContentView(R.layout.scorelayout);
@@ -196,9 +208,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-
-    @Override
-    public void setScore() {
+    public void setScore(int score) {
+        this.score = score;
 
     }
+
+
+
+
 }

@@ -112,7 +112,6 @@ public class GameView extends ScreenAdapter implements GestureDetector.GestureLi
 
         button.addListener(new InputListener() {
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-                Gdx.app.log("my app", "Pressed"); //** Usually used to start Game, etc. **//
                 GameController.reset();
                 GameModel.reset();
                 return true;
@@ -173,10 +172,12 @@ public class GameView extends ScreenAdapter implements GestureDetector.GestureLi
         stage.act();
         stage.draw();
 
-        if(GameController.getInstance().isOver()){
-            game.showScore();
+        int score;
+        score = GameController.getInstance().isOver();
+        if(score !=0)
+            game.setScore(score);
 
-        }
+
 
         
 
