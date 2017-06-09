@@ -36,6 +36,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     MediaPlayer music;
     MediaPlayer sound;
 
+
+    //CheckBox soundCheck = (CheckBox) findViewById(R.id.checkBoxSound);
+
     boolean soundAvailable;
 
     Stack<Integer> viewStack = new Stack<>();
@@ -146,6 +149,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 playSound();
                 setContentView(R.layout.settingslayout);
                 findViewById(R.id.checkBoxMusic).setOnClickListener(this);
+                findViewById(R.id.checkBoxSound).setOnClickListener(this);
                 viewStack.push(R.layout.settingslayout);
                 break;
             case R.id.checkBoxMusic:
@@ -154,11 +158,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 else music.pause();
                 break;
             case R.id.checkBoxSound:
-               /* if(((CheckBox)v).isChecked()) soundAvailable = true;
+                playSound();
+                if(((CheckBox)v).isChecked()) soundAvailable = true;
                 else soundAvailable = false;
-                break;*/
-                if(((CheckBox)v).isChecked()) sound.start();
-
                 break;
             case R.id.exitButton:
                 playSound();
@@ -181,6 +183,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (keyCode == KeyEvent.KEYCODE_BACK) {
 
             if(viewStack.peek() == R.layout.mainlayout){
+                music.pause();
                 return super.onKeyDown(keyCode, event);
 
             }
