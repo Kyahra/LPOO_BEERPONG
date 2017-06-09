@@ -153,12 +153,16 @@ public class GameController implements ContactListener {
 
     }
 
-    public boolean isOver(){
-       ;
-        if(ballIsMoving && ballBody.getLinearVelocity().isZero(0.5f))
-            return true;
+    public int isOver(){
 
-        return gameWon;
+        if(ballIsMoving && ballBody.getLinearVelocity().isZero(0.5f))
+            return score;
+
+        if(gameWon)
+            return score;
+
+
+        return 0;
 
     }
 

@@ -38,7 +38,7 @@ public class CupBody extends EntityBody {
 
         // left side
         createFixture(body, new float[]{
-                0,20, 40,330,55,330,15,20
+                0,20, 40,330,65,330,25,20
         }, width, height, density, friction, restitution, CUP_BODY, (short) (BALL_BODY | LIMIT_BODY));
 
         // bottom

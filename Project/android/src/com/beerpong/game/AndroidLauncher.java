@@ -12,7 +12,7 @@ public class AndroidLauncher extends AndroidApplication implements BeerPong.Andr
 
 
 	private static int level;
-	private static int score;
+
 
 	@Override
 	protected void onCreate (Bundle savedInstanceState) {
@@ -30,7 +30,8 @@ public class AndroidLauncher extends AndroidApplication implements BeerPong.Andr
 	}
 
 	@Override
-	public void setScore() {
+	public void setScore(int score) {
+		MainActivity.getInstance().setScore(score);
 
 	}
 }

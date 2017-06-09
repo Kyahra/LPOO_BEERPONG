@@ -18,7 +18,7 @@ public class BeerPong extends Game  {
 
 
 	public interface AndroidAPIAdapter{
-		public void setScore();
+		public void setScore(int score);
 	}
 
 	AndroidAPIAdapter androidAPIAdapter;
@@ -94,11 +94,14 @@ public class BeerPong extends Game  {
 
 	public SpriteBatch getSpriteBatch(){return batch;}
 
-	public void showScore(){
-		Gdx.app.exit();
+	public void setScore(int score){
 
 		if(androidAPIAdapter!=null)
-			androidAPIAdapter.setScore();
+			androidAPIAdapter.setScore(score);
+
+		Gdx.app.exit();
+
+
 
 	}
 }

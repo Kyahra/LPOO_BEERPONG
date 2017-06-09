@@ -2,16 +2,28 @@ package com.beerpong.game.view;
 
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.beerpong.game.BeerPong;
 import com.beerpong.game.controller.GameController;
 import com.beerpong.game.model.GameModel;
@@ -19,6 +31,8 @@ import com.beerpong.game.model.entities.BallModel;
 import com.beerpong.game.model.entities.CupModel;
 import com.beerpong.game.view.entities.EntityView;
 import com.beerpong.game.view.levels.LevelView;
+
+import javax.swing.text.View;
 
 
 /**
@@ -28,7 +42,7 @@ import com.beerpong.game.view.levels.LevelView;
 public class GameView extends ScreenAdapter implements GestureDetector.GestureListener {
     public static final float PIXEL_TO_METER =  0.007f;
     public static  int VIEWPORT_WIDTH =20;
-    private static final boolean DEBUG_PHYSICS = true;
+    private static final boolean DEBUG_PHYSICS = false;
 
     private final BeerPong game;
     private final LevelView level;
@@ -43,6 +57,7 @@ public class GameView extends ScreenAdapter implements GestureDetector.GestureLi
     private Music music;
     Texture background;
 
+    private Stage stage;
 
 
 
@@ -54,16 +69,19 @@ public class GameView extends ScreenAdapter implements GestureDetector.GestureLi
 
         camera = createCamera();
 
-        gestureDetecture = new GestureDetector(this);
-        Gdx.input.setInputProcessor(gestureDetecture);
+        stage = new Stage(new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
+        createRewindButton();
 
         background = game.getAssetManager().get("background.png",Texture.class);
 
+        InputMultiplexer inputMultiplexer = new InputMultiplexer();
+        gestureDetecture = new GestureDetector(this);
 
+        inputMultiplexer.addProcessor(gestureDetecture);
+        inputMultiplexer.addProcessor(stage);
 
-        //music = game.getAssetManager().get("audio/music/whiplash.mp3", Music.class);
-        //music.setLooping(true);
-        //music.play();
+        Gdx.input.setInputProcessor(inputMultiplexer);
+
 
 
     }
@@ -83,13 +101,40 @@ public class GameView extends ScreenAdapter implements GestureDetector.GestureLi
         return camera;
     }
 
+    private void createRewindButton(){
+
+        Texture rewindButton = game.getAssetManager().get("rewind.png",Texture.class);
+        TextureRegion myTextureRegion = new TextureRegion(rewindButton);
+        TextureRegionDrawable myTexRegionDrawable = new TextureRegionDrawable(myTextureRegion);
+        ImageButton button = new ImageButton(myTexRegionDrawable);
+
+        button.setPosition(Gdx.graphics.getWidth() -250,Gdx.graphics.getHeight()-200);
+
+        button.addListener(new InputListener() {
+            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+                GameController.reset();
+                GameModel.reset();
+                return true;
+            }
+        });
+
+        stage.addActor(button);
+
+
+
+
+
+    }
+
+
     private void loadAssets() {
 
-        game.getAssetManager().load("audio/music/whiplash.mp3", Music.class);
+
         game.getAssetManager().load("background.png", Texture.class);
         game.getAssetManager().load("ball.png",Texture.class);
         game.getAssetManager().load("cup.png",Texture.class);
         game.getAssetManager().load("table.png", Texture.class);
+        game.getAssetManager().load("rewind.png",Texture.class);
 
         game.getAssetManager().finishLoading();
     }
@@ -100,6 +145,7 @@ public class GameView extends ScreenAdapter implements GestureDetector.GestureLi
     public void render(float delta){
 
         GameController.getInstance().update(delta);
+
 
 
         camera.update();
@@ -119,10 +165,20 @@ public class GameView extends ScreenAdapter implements GestureDetector.GestureLi
             debugCamera = camera.combined.cpy();
             debugCamera.scl(1 / PIXEL_TO_METER);
             debugRenderer.render(GameController.getInstance().getWorld(), debugCamera);
+
+
         }
 
-        if(GameController.getInstance().isOver())
-            game.showScore();
+        stage.act();
+        stage.draw();
+
+        int score;
+        score = GameController.getInstance().isOver();
+        if(score !=0)
+            game.setScore(score);
+
+
+
         
 
     }
