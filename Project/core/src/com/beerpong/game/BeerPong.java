@@ -63,7 +63,7 @@ public class BeerPong extends Game  {
 				setScreen(new GameView(this, new MediumView()));
 				break;
 			case 3:
-				GameController.setLevel(((new EasyController())));
+				GameController.setLevel(((new MediumController())));
 				setScreen(new GameView(this,new HardView()));
 				break;
 			default:
