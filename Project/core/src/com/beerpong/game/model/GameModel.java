@@ -34,8 +34,7 @@ public class GameModel extends Stage {
     }
 
     private GameModel() {
-
-
+        
         float ratio = ((float) Gdx.graphics.getHeight() / (float) Gdx.graphics.getWidth());
 
         ball = new BallModel(  VIEWPORT_WIDTH *ratio *0.2f,VIEWPORT_WIDTH/2 ,0);
