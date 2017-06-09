@@ -92,8 +92,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onResume (){
         super.onResume();
         if(BeerPong.isExited()) {
+
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
             setContentView(R.layout.scorelayout);
+
+            ShareLinkContent content =  new ShareLinkContent.Builder().setContentUrl(Uri.parse("https://developers.facebook.com")).build();
+            ShareButton shareButton = (ShareButton)findViewById(R.id.fb_share_button);
+            shareButton.setShareContent(content);
+
             BeerPong.setExited(false);
         }
     }
@@ -128,11 +134,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 viewStack.push(R.layout.levelayout);
                 break;
             case R.id.difficultButton:
+<<<<<<< HEAD
                 playSound();
                 AndroidLauncher.setLevel(3);
                 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
                 setContentView(R.layout.scorelayout);
                 startActivity(new Intent(this, AndroidLauncher.class));
+=======
+
+                AndroidLauncher.setLevel(3);
+
+                playSound();
+
+                //startActivity(new Intent(this, AndroidLauncher.class));
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                setContentView(R.layout.scorelayout);
+
+                startActivity(new Intent(this, AndroidLauncher.class));
+
+>>>>>>> f0fa70c2d894f41a634b99f3fb8303d4788ac10b
                 viewStack.push(R.layout.levelayout);
                 break;
             case R.id.helpButton:
