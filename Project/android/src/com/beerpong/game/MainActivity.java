@@ -35,10 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     LoginButton loginButton;
     MediaPlayer music;
     MediaPlayer sound;
-
-
-    //CheckBox soundCheck = (CheckBox) findViewById(R.id.checkBoxSound);
-
+    
     boolean soundAvailable;
 
     Stack<Integer> viewStack = new Stack<>();
@@ -147,7 +144,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.settingsButton:
                 playSound();
-                setContentView(R.layout.settingslayout);
+                enableSettings();
                 findViewById(R.id.checkBoxMusic).setOnClickListener(this);
                 findViewById(R.id.checkBoxSound).setOnClickListener(this);
                 viewStack.push(R.layout.settingslayout);
@@ -177,9 +174,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
+    public void enableSettings(){
+
+        if(music.isPlaying() && soundAvailable){
+
+            setContentView(R.layout.settings3);
+        }
+        if(music.isPlaying() && !soundAvailable){
+
+            setContentView(R.layout.settings2);
+        }
+        if(!music.isPlaying() && soundAvailable){
+
+            setContentView(R.layout.settings1);
+        }
+        if(!music.isPlaying() && !soundAvailable){
+
+            setContentView(R.layout.settings4);
+        }
+    }
+
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
+
         if (keyCode == KeyEvent.KEYCODE_BACK) {
 
             if(viewStack.peek() == R.layout.mainlayout){
@@ -210,7 +228,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void setScore(int score) {
         this.score = score;
-
     }
 
 }
