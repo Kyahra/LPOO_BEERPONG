@@ -141,6 +141,7 @@ public class GameController implements ContactListener {
     }
 
 
+
     public World getWorld() {
         return world;
     }
@@ -167,4 +168,8 @@ public class GameController implements ContactListener {
         GameController.level = level;
     }
 
+
+    public int getScore() {
+        return score;
+    }
 }

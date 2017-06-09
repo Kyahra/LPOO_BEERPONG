@@ -26,7 +26,10 @@ import java.util.Stack;
  */
 
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener,BeerPong.AndroidAPIAdapter {
+
+
+    private int score;
 
     LoginButton loginButton;
     CallbackManager callBackManager;
@@ -78,15 +81,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-/*
-    @Override
-    protected void onPause(){
-        super.onPause();
-        music.release();
-        //finish();
-
-    }
-*/
 
     @Override
     public void onResume (){
@@ -110,7 +104,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         switch(v.getId()){
             case R.id.startGame:
-                playSound();setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                playSound();
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                 setContentView(R.layout.levelayout);
                 findViewById(R.id.easyButton).setOnClickListener(this);
                 findViewById(R.id.normalButton).setOnClickListener(this);
@@ -120,10 +115,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.easyButton:
                 playSound();
                 AndroidLauncher.setLevel(1);
-                Intent intent = new Intent(this, AndroidLauncher.class);
-                //startActivity(new Intent(this, AndroidLauncher.class));
-                startActivityForResult(intent,PICK_CONTACT_REQUEST);
-
+                startActivity(new Intent(this, AndroidLauncher.class));
                 setContentView(R.layout.scorelayout);
                 viewStack.push(R.layout.levelayout);
                 break;
@@ -134,17 +126,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 viewStack.push(R.layout.levelayout);
                 break;
             case R.id.difficultButton:
-
-                AndroidLauncher.setLevel(3);
-
                 playSound();
-
-                //startActivity(new Intent(this, AndroidLauncher.class));
-                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-                setContentView(R.layout.scorelayout);
-
+                AndroidLauncher.setLevel(3);
                 startActivity(new Intent(this, AndroidLauncher.class));
-
                 viewStack.push(R.layout.levelayout);
                 break;
             case R.id.helpButton:
@@ -210,14 +194,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        if (requestCode == PICK_CONTACT_REQUEST) {
-
-            if (resultCode == RESULT_OK) {
-
-                setContentView(R.layout.scorelayout);
-            }
-        }
     }
 
 
+    @Override
+    public void setScore() {
+
+    }
 }
