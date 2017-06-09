@@ -12,15 +12,7 @@ import static org.junit.Assert.*;
  */
 public class GameModelTest {
 
-    BeerPong.AndroidAPIAdapter androidAPIAdapter = new BeerPong.AndroidAPIAdapter() {
-        @Override
-        public void setScore() {
-        }
-    };
 
-    int level = 1;
-
-    BeerPong beerPong = new BeerPong(androidAPIAdapter, level);
 
 
 
