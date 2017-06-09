@@ -83,10 +83,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         sound = MediaPlayer.create(MainActivity.this, R.raw.button);
         soundAvailable = true;
 
-
-            instance = this;
-
-
+        instance = this;
 
     }
 
@@ -98,16 +95,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             System.out.println("SCORE:" + score);
 
+            if( score != 0) {
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                setContentView(R.layout.scorelayout);
 
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-            setContentView(R.layout.scorelayout);
+                ShareLinkContent content = new ShareLinkContent.Builder().setContentUrl(Uri.parse("https://developers.facebook.com")).build();
+                ShareButton shareButton = (ShareButton) findViewById(R.id.fb_share_button);
+                shareButton.setShareContent(content);
 
-            ShareLinkContent content =  new ShareLinkContent.Builder().setContentUrl(Uri.parse("https://developers.facebook.com")).build();
-            ShareButton shareButton = (ShareButton)findViewById(R.id.fb_share_button);
-            shareButton.setShareContent(content);
-
-            BeerPong.setExited(false);
+                BeerPong.setExited(false);
+            }
         }
+
     }
 
 
@@ -117,7 +116,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch(v.getId()){
             case R.id.startGame:
                 playSound();
-                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                 setContentView(R.layout.levelayout);
                 findViewById(R.id.easyButton).setOnClickListener(this);
                 findViewById(R.id.normalButton).setOnClickListener(this);
@@ -128,24 +126,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 playSound();
                 AndroidLauncher.setLevel(1);
                 startActivity(new Intent(this, AndroidLauncher.class));
-                setContentView(R.layout.scorelayout);
-                viewStack.push(R.layout.levelayout);
                 break;
             case R.id.normalButton:
                 playSound();
                 AndroidLauncher.setLevel(2);
                 startActivity(new Intent(this, AndroidLauncher.class));
-                viewStack.push(R.layout.levelayout);
                 break;
             case R.id.difficultButton:
-<<<<<<< HEAD
-
-=======
->>>>>>> b1b5fafe4da57662167560183a506dd93570d87c
                 playSound();
                 AndroidLauncher.setLevel(3);
                 startActivity(new Intent(this, AndroidLauncher.class));
-                viewStack.push(R.layout.levelayout);
                 break;
             case R.id.helpButton:
                 playSound();
@@ -190,6 +180,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
 
+            if(viewStack.peek() == R.layout.mainlayout){
+                return super.onKeyDown(keyCode, event);
+
+            }
             if((viewStack.peek() == R.layout.levelayout) ||(viewStack.peek() == R.layout.settingslayout) || (viewStack.peek() == R.layout.helplayout) ) {
                 viewStack.pop();
                 configMainLayout();
@@ -203,7 +197,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         return false;
-       // return super.onKeyDown(keyCode, event);
     }
 
 
@@ -216,8 +209,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         this.score = score;
 
     }
-
-
-
 
 }
