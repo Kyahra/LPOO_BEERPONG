@@ -14,7 +14,7 @@ import static com.beerpong.game.view.GameView.VIEWPORT_WIDTH;
  * Created by Sofia on 5/27/2017.
  */
 
-public class GameModel extends Stage {
+public class GameModel {
     private static GameModel instance;
 
     private  BallModel ball;
@@ -37,14 +37,18 @@ public class GameModel extends Stage {
         
         float ratio = ((float) Gdx.graphics.getHeight() / (float) Gdx.graphics.getWidth());
 
-        ball = new BallModel(  VIEWPORT_WIDTH *ratio *0.2f,VIEWPORT_WIDTH/2 ,0);
+        ball = new BallModel(  VIEWPORT_WIDTH  *0.2f,VIEWPORT_WIDTH/2 ,0);
         cup = new CupModel( VIEWPORT_WIDTH *0.8f, VIEWPORT_WIDTH *0.1f , 0);
 
         table = new SimpleModel(VIEWPORT_WIDTH/2,VIEWPORT_WIDTH*ratio/3.6f,0);
 
+        Gdx.app.log("height: ", String.valueOf(VIEWPORT_WIDTH*ratio));
+
+
+
         ground = new SimpleModel(0,0,0);
         leftWall = new SimpleModel(0,0,0);
-        roof = new SimpleModel(0,VIEWPORT_WIDTH *ratio,0);
+        roof = new SimpleModel(0,VIEWPORT_WIDTH*1.75f,0);
         rightWall = new SimpleModel(VIEWPORT_WIDTH ,0,0);
 
 

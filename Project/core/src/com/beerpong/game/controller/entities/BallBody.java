@@ -1,6 +1,7 @@
 package com.beerpong.game.controller.entities;
 
 
+import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
@@ -15,6 +16,8 @@ import com.beerpong.game.model.entities.SimpleModel;
  */
 
 public class BallBody extends EntityBody {
+
+
     /**
      * Constructs a space ship body according to
      * a space ship model.

@@ -42,7 +42,7 @@ public class GameController implements ContactListener {
     private int score =0;
 
     private boolean gameWon = false;
-    private boolean ballIsMoving = false;
+    private boolean isBallMoving = false;
 
 
     private GameController(){
@@ -92,11 +92,11 @@ public class GameController implements ContactListener {
     }
 
     public void shootBall(float delta_X, float delta_Y) {
-        if(!ballIsMoving) {
+        if(!isBallMoving) {
             Vector2 vector = new Vector2(delta_X / 400, -delta_Y / 400);
             vector.rotateRad(ballBody.getAngle());
             ballBody.applyForceToCenter(delta_X / 400, -delta_Y / 400, true);
-            ballIsMoving = true;
+            isBallMoving = true;
 
         }
 
@@ -155,7 +155,7 @@ public class GameController implements ContactListener {
 
     public int isOver(){
 
-        if(ballIsMoving && ballBody.getLinearVelocity().isZero(0.5f))
+        if(isBallMoving && ballBody.getLinearVelocity().isZero(0.5f))
             return score;
 
         if(gameWon)
@@ -167,13 +167,20 @@ public class GameController implements ContactListener {
     }
 
 
-    public static void setLevel(LevelController level) {
+    public static void setLevelController(LevelController level) {
 
         GameController.level = level;
     }
 
+    public BallBody getBallBody(){
 
-    public int getScore() {
-        return score;
+        return ballBody;
     }
+
+    public boolean isBallMoving(){
+        return isBallMoving;
+    }
+
+
+
 }

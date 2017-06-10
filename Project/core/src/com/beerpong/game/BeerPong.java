@@ -28,6 +28,8 @@ public class BeerPong extends Game  {
 		super();
 		this.androidAPIAdapter = androidAPIAdapter;
 		this.level = level;
+
+
 	}
 
 	private AssetManager assetManager;
@@ -46,6 +48,7 @@ public class BeerPong extends Game  {
 
 		startGame();
 
+
 	}
 
 
@@ -55,15 +58,15 @@ public class BeerPong extends Game  {
 
 		switch(level){
 			case 1:
-				GameController.setLevel((new EasyController()));
+				GameController.setLevelController((new EasyController()));
 				setScreen(new GameView(this, new EasyView()));
 				break;
 			case 2:
-				GameController.setLevel(((new MediumController())));
+				GameController.setLevelController(((new MediumController())));
 				setScreen(new GameView(this, new MediumView()));
 				break;
 			case 3:
-				GameController.setLevel(((new MediumController())));
+				GameController.setLevelController(((new MediumController())));
 				setScreen(new GameView(this,new HardView()));
 				break;
 			default:
