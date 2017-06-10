@@ -2,9 +2,16 @@ package com.beerpong.game;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 
 import android.view.KeyEvent;
@@ -17,9 +24,12 @@ import android.widget.TextView;
 import com.facebook.FacebookSdk;
 import com.facebook.login.widget.LoginButton;
 import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.model.SharePhoto;
+import com.facebook.share.model.SharePhotoContent;
 import com.facebook.share.widget.ShareButton;
 
 
+import java.io.ByteArrayOutputStream;
 import java.util.Stack;
 
 /**
@@ -88,6 +98,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    public static Bitmap getBitmapFromView(View view) {
+        //Define a bitmap with the same size as the view
+        Bitmap returnedBitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(),Bitmap.Config.ARGB_8888);
+        //Bind a canvas to it
+        Canvas canvas = new Canvas(returnedBitmap);
+        //Get the view's background
+        Drawable bgDrawable =view.getBackground();
+        if (bgDrawable!=null)
+            //has background drawable, then draw it on the canvas
+            bgDrawable.draw(canvas);
+        else
+            //does not have background drawable, then draw white background on the canvas
+            canvas.drawColor(Color.WHITE);
+        // draw the view on the canvas
+        view.draw(canvas);
+        //return the bitmap
+        return returnedBitmap;
+    }
+
 
     @Override
     public void onResume (){
@@ -108,9 +137,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 textScore.setText(Integer.toString(score));
 
 
+               // Bitmap image = getBitmapFromView(findViewById(R.id.textView));
+
+               // Drawable myDrawable = getResources().getDrawable(R.drawable.bitmapback);
+               // Bitmap myLogo = ((BitmapDrawable) myDrawable).getBitmap();
+
+
+                Bitmap myLogo = BitmapFactory.decodeResource(getResources(), R.drawable.cup);
+
+                SharePhoto photo = new SharePhoto.Builder().setBitmap(myLogo).build();
+               // SharePhotoContent content = new SharePhotoContent.Builder().addPhoto(photo).build();
+
                 ShareLinkContent content = new ShareLinkContent.Builder().setContentUrl(Uri.parse("https://developers.facebook.com")).build();
                 ShareButton shareButton = (ShareButton) findViewById(R.id.fb_share_button);
                 shareButton.setShareContent(content);
+
+
+
+
+
 
                 BeerPong.setExited(false);
             }
