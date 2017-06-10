@@ -8,16 +8,18 @@ import static org.junit.Assert.*;
 public class BeerPongTest {
     @org.junit.Test
     public void startGame() throws Exception {
-/*
+
         BeerPong.AndroidAPIAdapter androidAPIAdapter = new BeerPong.AndroidAPIAdapter() {
             @Override
-            public void setScore() {
+            public void setScore(int score) {
+
             }
+
         };
 
         int level = 1;
 
-       BeerPong beerPong = new BeerPong(androidAPIAdapter, level);
+        BeerPong beerPong = new BeerPong(androidAPIAdapter, level);
 
         BeerPong.setExited(true);
 
@@ -25,7 +27,7 @@ public class BeerPongTest {
 
         assertEquals(exited, false);
 
-*/
+
     }
 
 }

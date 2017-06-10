@@ -2,6 +2,7 @@ package com.beerpong.game;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,7 +11,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.media.MediaPlayer;
 import android.widget.CheckBox;
-
+import android.widget.TextView;
 
 
 import com.facebook.FacebookSdk;
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     LoginButton loginButton;
     MediaPlayer music;
     MediaPlayer sound;
-    
+
     boolean soundAvailable;
 
     Stack<Integer> viewStack = new Stack<>();
@@ -98,6 +99,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if( score != 0) {
                 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
                 setContentView(R.layout.scorelayout);
+                findViewById(R.id.menuButton).setOnClickListener(this);
+
+                TextView textScore = (TextView)findViewById(R.id.textView);
+                Typeface type = Typeface.createFromAsset(getAssets(),"fonts/Capture_it.ttf");
+
+                textScore.setTypeface(type);
+                textScore.setText(Integer.toString(score));
+
 
                 ShareLinkContent content = new ShareLinkContent.Builder().setContentUrl(Uri.parse("https://developers.facebook.com")).build();
                 ShareButton shareButton = (ShareButton) findViewById(R.id.fb_share_button);
@@ -158,6 +167,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 playSound();
                 if(((CheckBox)v).isChecked()) soundAvailable = true;
                 else soundAvailable = false;
+                break;
+            case R.id.menuButton:
+                playSound();
+                configMainLayout();
                 break;
             case R.id.exitButton:
                 playSound();

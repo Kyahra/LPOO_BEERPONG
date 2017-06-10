@@ -13,13 +13,11 @@ import static org.junit.Assert.*;
 public class GameModelTest {
 
 
-
-
-
     @Test
     public void getBall() throws Exception {
 
         BallModel ballModel =  new BallModel(0.5f, 0.5f,0);
+
     }
 
     @Test
