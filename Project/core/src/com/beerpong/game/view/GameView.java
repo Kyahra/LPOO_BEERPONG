@@ -14,16 +14,12 @@ import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.beerpong.game.BeerPong;
 import com.beerpong.game.controller.GameController;
 import com.beerpong.game.model.GameModel;
@@ -32,7 +28,7 @@ import com.beerpong.game.model.entities.CupModel;
 import com.beerpong.game.view.entities.EntityView;
 import com.beerpong.game.view.levels.LevelView;
 
-import javax.swing.text.View;
+
 
 
 /**
@@ -62,6 +58,8 @@ public class GameView extends ScreenAdapter implements GestureDetector.GestureLi
 
 
     public GameView(BeerPong game, LevelView level){
+
+
         this.game = game;
         this.level = level;
 
@@ -82,6 +80,8 @@ public class GameView extends ScreenAdapter implements GestureDetector.GestureLi
 
         Gdx.input.setInputProcessor(inputMultiplexer);
 
+
+        GameModel.setTest();
 
 
     }
