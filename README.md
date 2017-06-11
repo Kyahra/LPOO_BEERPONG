@@ -1,5 +1,7 @@
 # Beer Pong
 
+[![BCH compliance](https://bettercodehub.com/edge/badge/dolfander/LPOO1617_T3G8?branch=master)](https://bettercodehub.com/)
+
 ## Setup and Installation
 
 To do.
@@ -33,9 +35,6 @@ Ao longo do projeto fomos confrontados com as mais diversas situações. Tudo co
 
 
 
-
-
-[![BCH compliance](https://bettercodehub.com/edge/badge/dolfander/LPOO1617_T3G8?branch=master)](https://bettercodehub.com/)
 
 
 
