@@ -86,7 +86,7 @@ public class GameModel {
         
         float ratio = ((float) Gdx.graphics.getHeight() / (float) Gdx.graphics.getWidth());
 
-        ball = new BallModel(  VIEWPORT_WIDTH  *0.2f,VIEWPORT_WIDTH/2 ,0);
+        ball = new BallModel(  VIEWPORT_WIDTH  *0.1f,VIEWPORT_WIDTH/2 ,0);
         cup = new CupModel( VIEWPORT_WIDTH *0.8f, VIEWPORT_WIDTH *0.1f , 0);
 
         table = new SimpleModel(VIEWPORT_WIDTH/2,VIEWPORT_WIDTH*ratio/3.6f,0);
