@@ -40,19 +40,24 @@ public class CupBody extends EntityBody {
         float density = 2f, friction = 1f, restitution = 0f;
         int width = 234, height = 330;
 
-        createFixture(body, new float[]{
-                0,20, 40,330,65,330,25,20
-        }, width, height, density, friction, restitution);
+
+        setShape( new float[]{
+                0,20, 40,330,65,330,25,20}, width, height);
+
+        createFixture(body, density, friction, restitution);
 
 
-        createFixture(body, new float[]{
+        setShape( new float[]{
                 40,290,40,330,196,330,196,290
-        }, width, height, 3f, friction, restitution);
+        }, width, height);
+
+        createFixture(body, 3f, friction, restitution);
 
 
-        createFixture(body, new float[]{
+        setShape(new float[]{
                 215,20,234,20,175,330,193,330
-        }, width, height, density, friction, restitution);
+        }, width, height);
+        createFixture(body, density, friction, restitution);
 
 
 

@@ -26,30 +26,20 @@ public abstract class EntityBody {
 
 
     Body body;
+   private float[] vertexes;
 
     /**
      * Helper method to create a polygon fixture represented by a set of vertexes.
      *
      * @param body        The body the fixture is to be attached to.
-     * @param vertexes    The vertexes defining the fixture in pixels so it is
-     *                    easier to get them from a bitmap image.
-     * @param width       The width of the bitmap the vertexes where extracted from.
-     * @param height      The height of the bitmap the vertexes where extracted from.
+
      * @param density     The density of the fixture. How heavy it is in relation to its area.
      * @param friction    The friction of the fixture. How slippery it is.
      * @param restitution The restitution of the fixture. How much it bounces.
      *
      */
-    final void createFixture(Body body, float[] vertexes, int width, int height, float density, float friction, float restitution) {
+    final void createFixture(Body body,float density, float friction, float restitution) {
 
-        for (int i = 0; i < vertexes.length; i++) {
-            if (i % 2 == 0) vertexes[i] -= width / 2;
-            if (i % 2 != 0) vertexes[i] -= height / 2;
-
-            if (i % 2 != 0) vertexes[i] *= -1;
-
-            vertexes[i] *= PIXEL_TO_METER;
-        }
 
         PolygonShape polygon = new PolygonShape();
         polygon.set(vertexes);
@@ -66,6 +56,22 @@ public abstract class EntityBody {
 
         polygon.dispose();
     }
+
+    public void setShape( float[] vertexes, int width, int height){
+        for (int i = 0; i < vertexes.length; i++) {
+            if (i % 2 == 0) vertexes[i] -= width / 2;
+            if (i % 2 != 0) vertexes[i] -= height / 2;
+
+            if (i % 2 != 0) vertexes[i] *= -1;
+
+            vertexes[i] *= PIXEL_TO_METER;
+        }
+
+        this.vertexes = vertexes;
+
+    }
+
+
 
 
 
