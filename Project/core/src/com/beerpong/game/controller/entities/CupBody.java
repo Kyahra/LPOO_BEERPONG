@@ -12,6 +12,11 @@ import com.beerpong.game.model.entities.EntityModel;
  * Created by Sofia on 6/1/2017.
  */
 
+
+/***
+ * Cup body class
+ *
+ */
 public class CupBody extends EntityBody {
 
 
@@ -35,21 +40,19 @@ public class CupBody extends EntityBody {
         float density = 2f, friction = 1f, restitution = 0f;
         int width = 234, height = 330;
 
-
-        // left side
         createFixture(body, new float[]{
                 0,20, 40,330,65,330,25,20
-        }, width, height, density, friction, restitution, CUP_BODY, (short) (BALL_BODY | LIMIT_BODY));
+        }, width, height, density, friction, restitution);
 
-        // bottom
+
         createFixture(body, new float[]{
                 40,290,40,330,196,330,196,290
-        }, width, height, 3f, friction, restitution, CUP_BODY, (short) (BALL_BODY | LIMIT_BODY));
+        }, width, height, 3f, friction, restitution);
 
-       // right side
+
         createFixture(body, new float[]{
                 215,20,234,20,175,330,193,330
-        }, width, height, density, friction, restitution, CUP_BODY, (short) (BALL_BODY | LIMIT_BODY));
+        }, width, height, density, friction, restitution);
 
 
 

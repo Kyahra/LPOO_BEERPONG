@@ -35,28 +35,90 @@ import com.beerpong.game.view.levels.LevelView;
  * Created by Sofia on 5/24/2017.
  */
 
+/**
+ * The game view class. Everything that is related to the view is implemented here.
+ *
+ */
 public class GameView extends ScreenAdapter implements GestureDetector.GestureListener {
+
+    /**
+     * The pixel to meter value
+     *
+     */
     public static final float PIXEL_TO_METER =  0.007f;
+
+    /**
+     * Viewport width
+     *
+     */
     public static  int VIEWPORT_WIDTH =20;
+
+    /**
+     * A boolean that sets the debug physics state
+     *
+     */
     private static final boolean DEBUG_PHYSICS = false;
 
+    /**
+     * The game
+     *
+     */
     private final BeerPong game;
+
+    /**
+     * The level view
+     *
+     */
     private final LevelView level;
 
+    /**
+     * The gesture detecture
+     *
+     */
     private GestureDetector gestureDetecture;
 
-
+    /**
+     * The Orthographic Camera
+     *
+     */
     private final OrthographicCamera camera;
+
+    /**
+     * The debug renderer
+     *
+     */
     private Box2DDebugRenderer debugRenderer;
+
+    /**
+     * The debug camera
+     *
+     */
     private Matrix4 debugCamera;
 
+    /**
+     * The music
+     *
+     */
     private Music music;
+
+    /**
+     * The background texture
+     *
+     */
     Texture background;
 
+    /**
+     * The stage
+     *
+     */
     private Stage stage;
 
-
-
+    /**
+     * The game view contructor
+     *
+     * @param game the game
+     * @param level the level
+     */
     public GameView(BeerPong game, LevelView level){
 
 
@@ -86,6 +148,11 @@ public class GameView extends ScreenAdapter implements GestureDetector.GestureLi
 
     }
 
+    /**
+     * The Orthographic Camera contructor
+     *
+     * @return the camera
+     */
     private OrthographicCamera createCamera() {
         OrthographicCamera camera = new OrthographicCamera(VIEWPORT_WIDTH / PIXEL_TO_METER, VIEWPORT_WIDTH / PIXEL_TO_METER * ((float) Gdx.graphics.getHeight() / (float)Gdx.graphics.getWidth()));
 
@@ -101,6 +168,10 @@ public class GameView extends ScreenAdapter implements GestureDetector.GestureLi
         return camera;
     }
 
+    /**
+     * Creates a rewind button
+     *
+     */
     private void createRewindButton(){
 
         Texture rewindButton = game.getAssetManager().get("rewind.png",Texture.class);
@@ -120,13 +191,12 @@ public class GameView extends ScreenAdapter implements GestureDetector.GestureLi
 
         stage.addActor(button);
 
-
-
-
-
     }
 
-
+    /**
+     * Loads the assets
+     *
+     */
     private void loadAssets() {
 
 
@@ -140,13 +210,15 @@ public class GameView extends ScreenAdapter implements GestureDetector.GestureLi
     }
 
 
-
+    /**
+     * Renders the game view
+     *
+     * @param delta the delta
+     */
     @Override
     public void render(float delta){
 
         GameController.getInstance().update(delta);
-
-
 
         camera.update();
         this.level.updateCamera(camera);
@@ -166,7 +238,6 @@ public class GameView extends ScreenAdapter implements GestureDetector.GestureLi
             debugCamera.scl(1 / PIXEL_TO_METER);
             debugRenderer.render(GameController.getInstance().getWorld(), debugCamera);
 
-
         }
 
         stage.act();
@@ -175,14 +246,16 @@ public class GameView extends ScreenAdapter implements GestureDetector.GestureLi
         int score;
         score = GameController.getInstance().isOver();
         if(score !=0)
-            game.setScore(score);
 
-
-
-        
+        game.setScore(score);
 
     }
 
+
+    /**
+     * Draws Entities
+     *
+     */
     public void drawEntities() {
         EntityView view;
 
@@ -198,27 +271,63 @@ public class GameView extends ScreenAdapter implements GestureDetector.GestureLi
 
     }
 
+    /**
+     * Draws the bacjground
+     *
+     */
     private void drawBackground() {
         game.getSpriteBatch().draw(background,0,0,camera.viewportWidth,camera.viewportHeight);
     }
 
 
-
+    /**
+     * Checks if a touchDown movement is performed
+     *
+     * @param x the x value
+     * @param y the y value
+     * @param pointer the pointer value
+     * @param button the button value
+     * @return true if the movement is performed, false otherwise
+     */
     @Override
     public boolean touchDown(float x, float y, int pointer, int button) {
         return false;
     }
 
+    /**
+     * Checks if a tap movement is performed
+     *
+     * @param x the x value
+     * @param y the y value
+     * @param count the count value
+     * @param button the button value
+     * @return true if the movement is performed, false otherwise
+     */
     @Override
     public boolean tap(float x, float y, int count, int button) {
         return false;
     }
 
+    /**
+     * Checks if a longPress movement is performed
+     *
+     * @param x the x value
+     * @param y the y value
+     * @return true if the movement is performed, false otherwise
+     */
     @Override
     public boolean longPress(float x, float y) {
         return false;
     }
 
+    /**
+     * Checks if a fling movement is performed
+     *
+     * @param velocityX the x velocity value
+     * @param velocityY the y velocity value
+     * @param button the button value
+     * @return true if the movement is performed, false otherwise
+     */
     @Override
     public boolean fling(float velocityX, float velocityY, int button) {
        GameController.getInstance().shootBall(velocityX,velocityY);
@@ -226,31 +335,68 @@ public class GameView extends ScreenAdapter implements GestureDetector.GestureLi
 
     }
 
+    /**
+     * Checks if a pan movement is performed
+     *
+     * @param x the x value
+     * @param y the y value
+     * @param deltaX the delta x value
+     * @param deltaY the delta y value
+     * @return true if the movement is performed, false otherwise
+     */
     @Override
     public boolean pan(float x, float y, float deltaX, float deltaY) {
 
         return true;
     }
 
+    /**
+     * Checks if a panStop movement is performed
+     *
+     * @param x the x value
+     * @param y tha y value
+     * @param pointer the pointer value
+     * @param button the button value
+     * @return true if the movement is performed, false otherwise
+     */
     @Override
     public boolean panStop(float x, float y, int pointer, int button) {
         return false;
     }
 
+    /**
+     * Checks if a zoom movement is performed
+     *
+     * @param initialDistance the inicial distance
+     * @param distance the distance
+     * @return true if the movement is performed, false otherwise
+     */
     @Override
     public boolean zoom(float initialDistance, float distance) {
         return false;
     }
 
+    /**
+     * Checks if a pinch movement is performed
+     *
+     * @param initialPointer1 the inicial pointer 1
+     * @param initialPointer2 the inicial pointer 2
+     * @param pointer1 the pointer 1
+     * @param pointer2 the pointer 2
+     * @return true if the movement is performed, false otherwise
+     */
     @Override
     public boolean pinch(Vector2 initialPointer1, Vector2 initialPointer2, Vector2 pointer1, Vector2 pointer2) {
         return false;
     }
 
+    /**
+     * Checks if a pinchStop movement is performed
+     *
+     */
     @Override
     public void pinchStop() {
 
     }
 
-   
 }

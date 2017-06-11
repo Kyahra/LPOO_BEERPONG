@@ -13,17 +13,40 @@ import com.beerpong.game.view.levels.EasyView;
 import com.beerpong.game.view.levels.HardView;
 import com.beerpong.game.view.levels.MediumView;
 
-
+/**
+ * The game class. This is responsible for everythings that happens.
+ *
+ * Takes care of all MCV entities
+ *
+ */
 public class BeerPong extends Game  {
 
-
+	/**
+	 * The API Adapter implementation
+	 *
+	 */
 	public interface AndroidAPIAdapter{
 		public void setScore(int score);
 	}
 
+	/**
+	 * Android API Adapter
+	 *
+	 */
 	AndroidAPIAdapter androidAPIAdapter;
+
+	/**
+	 * The game level
+	 *
+	 */
 	int level;
 
+	/**
+	 * Starts the game
+	 *
+	 * @param androidAPIAdapter
+	 * @param level
+	 */
 	public BeerPong(AndroidAPIAdapter androidAPIAdapter, int level){
 		super();
 		this.androidAPIAdapter = androidAPIAdapter;
@@ -32,11 +55,28 @@ public class BeerPong extends Game  {
 
 	}
 
+	/**
+	 * The asset manager
+	 *
+	 */
 	private AssetManager assetManager;
+
+	/**
+	 * The sprite batch
+	 *
+	 */
 	private SpriteBatch batch;
+
+	/**
+	 * Boolean, true if the game has exited, false otherwise
+	 *
+	 */
 	private	static boolean exited = false;
 
-
+	/**
+	 * Creates the game
+	 *
+	 */
 	@Override
 	public void create () {
 		assetManager = new AssetManager();
@@ -48,13 +88,14 @@ public class BeerPong extends Game  {
 
 		startGame();
 
-
 	}
 
 
-
+	/**
+	 * Starts the game
+	 *
+	 */
 	public void startGame(){
-
 
 		switch(level){
 			case 1:
@@ -72,10 +113,13 @@ public class BeerPong extends Game  {
 			default:
 				break;
 
-
 		}
 	}
 
+	/**
+	 * Disposes
+	 *
+	 */
 	@Override
 	public void dispose(){
 		batch.dispose();
@@ -83,28 +127,51 @@ public class BeerPong extends Game  {
 		exited = true;
 	}
 
+	/**
+	 * Checks whether the game has exited
+	 *
+	 * @return true if the game has exited, false otherwise
+	 */
 	public static boolean isExited() {
 		return exited;
 	}
 
+	/**
+	 * Exit setter
+	 *
+	 * @param exited the exited state
+	 */
 	public static void setExited(boolean exited) {
 		exited = exited;
 	}
 
+	/**
+	 * Gets the asset manager
+	 *
+	 * @return the asset manager
+	 */
 	public AssetManager getAssetManager(){
 		return  assetManager;
 	}
 
+	/**
+	 * Gets the sprite batch
+	 *
+	 * @return the sprite batch
+	 */
 	public SpriteBatch getSpriteBatch(){return batch;}
 
+	/**
+	 * Score setter
+	 *
+	 * @param score the score
+	 */
 	public void setScore(int score){
 
 		if(androidAPIAdapter!=null)
 			androidAPIAdapter.setScore(score);
 
 		Gdx.app.exit();
-
-
 
 	}
 }

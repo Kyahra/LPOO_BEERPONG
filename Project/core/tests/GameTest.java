@@ -5,6 +5,8 @@ import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.headless.HeadlessApplication;
 import com.badlogic.gdx.graphics.GL20;
+import com.beerpong.game.controller.GameController;
+import com.beerpong.game.model.GameModel;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -42,5 +44,7 @@ public class GameTest {
         // Exit the application first
         application.exit();
         application = null;
+
+
     }
 }

@@ -13,20 +13,42 @@ import com.beerpong.game.view.entities.EntityView;
  * Created by Sofia on 6/8/2017.
  */
 
+
+/**
+ * The view that is responsible for the hard level
+ *
+ */
 public class HardView implements LevelView {
 
 
-
+    /**
+     * Maximum value that the zoom is able to take
+     */
     private float MAX_ZOOM = 1f;
+
+    /**
+     * Minimum value that the zoom is able to take
+     */
     private float MIN_ZOOM =0.9f;
 
+    /**
+     * Maximum value that the x is able to take
+     */
     private float MAX_X =1470;
+
+    /**
+     * Minimum value that the x is able to take
+     */
     private float MIN_X = 1360;
 
-
-    //ANDA TER A FLORESTA SUA SLUT, bjinho do teu cunhazinho ;)
-
+    /**
+     * Boolean that checks the zoom
+     */
     private boolean zooming = false;
+
+    /**
+     * Boolean that checks if it is left moving
+     */
     private boolean movingLeft = true;
 
 
