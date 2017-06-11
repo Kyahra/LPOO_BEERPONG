@@ -2,9 +2,9 @@
 
 [![BCH compliance](https://bettercodehub.com/edge/badge/dolfander/LPOO1617_T3G8?branch=master)](https://bettercodehub.com/)
 
-## Setup and Installation
+## Setup 
 
-To do.
+Instalar a APK que se encontra na pasta Executables
 
 ## UML
 
