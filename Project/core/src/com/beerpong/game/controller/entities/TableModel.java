@@ -41,12 +41,12 @@ public class TableModel extends EntityBody {
 
         createFixture(body, new float[]{
                 184,35,15,119,15,190,1573,200,1573,129,1386,37
-        }, width, height, density, friction, restitution, CUP_BODY, (short) (BALL_BODY | LIMIT_BODY));
+        }, width, height, density, friction, restitution);
 
 
         createFixture(body, new float[]{
                 273,189,273,703,1315,703,1315,189
-        }, width, height, density, friction, restitution, CUP_BODY, (short) (BALL_BODY | LIMIT_BODY));
+        }, width, height, density, friction, restitution);
 
 
     }

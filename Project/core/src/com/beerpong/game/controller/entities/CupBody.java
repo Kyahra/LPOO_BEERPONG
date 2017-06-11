@@ -42,17 +42,17 @@ public class CupBody extends EntityBody {
 
         createFixture(body, new float[]{
                 0,20, 40,330,65,330,25,20
-        }, width, height, density, friction, restitution, CUP_BODY, (short) (BALL_BODY | LIMIT_BODY));
+        }, width, height, density, friction, restitution);
 
 
         createFixture(body, new float[]{
                 40,290,40,330,196,330,196,290
-        }, width, height, 3f, friction, restitution, CUP_BODY, (short) (BALL_BODY | LIMIT_BODY));
+        }, width, height, 3f, friction, restitution);
 
 
         createFixture(body, new float[]{
                 215,20,234,20,175,330,193,330
-        }, width, height, density, friction, restitution, CUP_BODY, (short) (BALL_BODY | LIMIT_BODY));
+        }, width, height, density, friction, restitution);
 
 
 

@@ -290,4 +290,8 @@ public class GameController implements ContactListener {
         return isBallMoving;
     }
 
+    public int getScore(){
+        return score;
+    }
+
 }

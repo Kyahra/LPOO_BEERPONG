@@ -47,8 +47,7 @@ public class BallBody extends EntityBody {
         fixtureDef.density = .04f;
         fixtureDef.friction =  .7f;
         fixtureDef.restitution =  .5f;
-        fixtureDef.filter.categoryBits = BALL_BODY;
-        fixtureDef.filter.maskBits = LIMIT_BODY | CUP_BODY;
+
 
         body.createFixture(fixtureDef);
 

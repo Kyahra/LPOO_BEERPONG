@@ -87,7 +87,6 @@ public class GameModel {
      */
     private GameModel() {
 
-        Gdx.app.log("cria-se game model","o");
         
         float ratio = ((float) Gdx.graphics.getHeight() / (float) Gdx.graphics.getWidth());
 

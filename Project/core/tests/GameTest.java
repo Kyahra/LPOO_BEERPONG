@@ -5,6 +5,8 @@ import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.headless.HeadlessApplication;
 import com.badlogic.gdx.graphics.GL20;
+import com.beerpong.game.controller.GameController;
+import com.beerpong.game.model.GameModel;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -14,7 +16,7 @@ import org.mockito.Mockito;
  * Created by up201504570 on 10/06/2017.
  */
 
-class GameTest {
+public class GameTest {
     // This is our "test" application
     private static Application application;
 
@@ -42,5 +44,7 @@ class GameTest {
         // Exit the application first
         application.exit();
         application = null;
+
+
     }
 }
