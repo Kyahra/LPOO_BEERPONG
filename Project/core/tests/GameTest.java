@@ -14,7 +14,7 @@ import org.mockito.Mockito;
  * Created by up201504570 on 10/06/2017.
  */
 
-public class GameTest {
+class GameTest {
     // This is our "test" application
     private static Application application;
 

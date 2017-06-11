@@ -11,12 +11,28 @@ import com.beerpong.game.view.entities.EntityView;
  * Created by Sofia on 6/6/2017.
  */
 
+
+/**
+ * The view that is responsible for the medium level
+ *
+ */
 public class MediumView implements LevelView {
+
+    /**
+     * Updates the camera
+     *
+     * @param camera the camera
+     */
     @Override
     public void updateCamera(OrthographicCamera camera) {
 
     }
 
+    /**
+     * Draws entities
+     *
+     * @param game the game
+     */
     @Override
     public void drawEntities(BeerPong game) {
 

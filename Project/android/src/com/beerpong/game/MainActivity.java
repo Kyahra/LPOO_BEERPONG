@@ -65,11 +65,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.helpButton).setOnClickListener(this);
 
         loginButton = (LoginButton)findViewById(R.id.fb_login_bn);
-
+/*
         ShareLinkContent content =  new ShareLinkContent.Builder().setContentUrl(Uri.parse("https://developers.facebook.com")).build();
         ShareButton shareButton = (ShareButton)findViewById(R.id.fb_share_button);
         shareButton.setShareContent(content);
-
+*/
     }
 
     public static MainActivity getInstance() {
@@ -151,10 +151,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 ShareLinkContent content = new ShareLinkContent.Builder().setContentUrl(Uri.parse("https://developers.facebook.com")).build();
                 ShareButton shareButton = (ShareButton) findViewById(R.id.fb_share_button);
                 shareButton.setShareContent(content);
-
-
-
-
 
 
                 BeerPong.setExited(false);

@@ -16,25 +16,18 @@ import static com.beerpong.game.view.GameView.PIXEL_TO_METER;
  * Created by Sofia on 5/27/2017.
  */
 
+
+/**
+ * Entity body class
+ *
+ */
 public abstract class EntityBody {
 
     final static short BALL_BODY = 0x0001;
     final static short LIMIT_BODY = 0x0002;
     final static short CUP_BODY = 0x0004;
 
-
-    /**
-     * The Box2D body that supports this body.
-     */
     Body body;
-
-    /**
-     * Constructs a body representing a model in a certain world.
-     *
-     * @param world The world this body lives on.
-     * @param model The model representing the body.
-     */
-
 
     /**
      * Helper method to create a polygon fixture represented by a set of vertexes.
@@ -51,14 +44,14 @@ public abstract class EntityBody {
      * @param mask
      */
     final void createFixture(Body body, float[] vertexes, int width, int height, float density, float friction, float restitution, short category, short mask) {
-        // Transform pixels into meters, center and invert the y-coordinate
+
         for (int i = 0; i < vertexes.length; i++) {
-            if (i % 2 == 0) vertexes[i] -= width / 2;   // center the vertex x-coordinate
-            if (i % 2 != 0) vertexes[i] -= height / 2;  // center the vertex y-coordinate
+            if (i % 2 == 0) vertexes[i] -= width / 2;
+            if (i % 2 != 0) vertexes[i] -= height / 2;
 
-            if (i % 2 != 0) vertexes[i] *= -1;          // invert the y-coordinate
+            if (i % 2 != 0) vertexes[i] *= -1;
 
-            vertexes[i] *= PIXEL_TO_METER;              // scale from pixel to meter
+            vertexes[i] *= PIXEL_TO_METER;
         }
 
         PolygonShape polygon = new PolygonShape();
@@ -158,6 +151,5 @@ public abstract class EntityBody {
     public Vector2 getLinearVelocity(){
         return body.getLinearVelocity();
     }
-
 
 }

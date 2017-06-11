@@ -1,0 +1,10 @@
+
+com.beerpong.game
+com.beerpong.game.controller
+com.beerpong.game.controller.entities
+com.beerpong.game.controller.levels
+com.beerpong.game.model
+com.beerpong.game.model.entities
+com.beerpong.game.view
+com.beerpong.game.view.entities
+com.beerpong.game.view.levels

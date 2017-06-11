@@ -12,11 +12,22 @@ import com.beerpong.game.model.entities.EntityModel;
  * Created by Sofia on 5/27/2017.
  */
 
+
+/**
+ * Limit body class
+ *
+ */
 public class LimitBody extends EntityBody {
 
-
+    /**
+     * Constructs a limit body representing a model in a certain world.
+     *
+     * @param world The world this body lives on.
+     * @param model The model representing the body.
+     * @param width The width of the body.
+     * @param width The height of the body.
+     */
     public LimitBody(World world, EntityModel model, float width, float height) {
-
 
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.StaticBody;
@@ -28,10 +39,7 @@ public class LimitBody extends EntityBody {
 
         PolygonShape rectangle = new PolygonShape();
 
-
         rectangle.setAsBox(width,height);
-
-
 
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = rectangle;
@@ -41,15 +49,10 @@ public class LimitBody extends EntityBody {
         fixtureDef.filter.categoryBits = LIMIT_BODY;
         fixtureDef.filter.maskBits = BALL_BODY | CUP_BODY;
 
-
         body.createFixture(fixtureDef);
-
 
         rectangle.dispose();
 
     }
-
-
-
 
 }
