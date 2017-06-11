@@ -9,9 +9,7 @@ import com.beerpong.game.controller.levels.EasyController;
 import com.beerpong.game.controller.levels.MediumController;
 import com.beerpong.game.model.GameModel;
 import com.beerpong.game.view.GameView;
-import com.beerpong.game.view.levels.EasyView;
-import com.beerpong.game.view.levels.HardView;
-import com.beerpong.game.view.levels.MediumView;
+
 
 /**
  * The game class. This is responsible for everythings that happens.
@@ -100,15 +98,15 @@ public class BeerPong extends Game  {
 		switch(level){
 			case 1:
 				GameController.setLevelController((new EasyController()));
-				setScreen(new GameView(this, new EasyView()));
+				setScreen(new GameView(this,1));
 				break;
 			case 2:
 				GameController.setLevelController(((new MediumController())));
-				setScreen(new GameView(this, new MediumView()));
+				setScreen(new GameView(this,2));
 				break;
 			case 3:
 				GameController.setLevelController(((new MediumController())));
-				setScreen(new GameView(this,new HardView()));
+				setScreen(new GameView(this,3));
 				break;
 			default:
 				break;
