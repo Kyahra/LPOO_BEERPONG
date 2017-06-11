@@ -3,6 +3,8 @@
 
 import com.beerpong.game.controller.GameController;
 import com.beerpong.game.controller.levels.EasyController;
+import com.beerpong.game.view.GameView;
+import com.beerpong.game.view.levels.EasyView;
 
 import org.junit.Test;
 
@@ -17,6 +19,7 @@ public class GameLogicTest extends GameTest{
     @Test
     public void testShootBall() {
        GameController.setLevelController(new EasyController());
+
 
         GameController.getInstance().shootBall(1000,100);
         GameController.getInstance().update(1);

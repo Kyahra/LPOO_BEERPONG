@@ -21,7 +21,7 @@ android {
     defaultConfig {
         applicationId "com.beerpong.game"
         minSdkVersion 11
-        targetSdkVersion 23
+        targetSdkVersion 25
         multiDexEnabled true
 
     }
