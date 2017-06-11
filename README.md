@@ -1,75 +1,43 @@
-# LPOO-Final-Project
+# Beer Pong
 
-## Architecture Design
+## Setup and Installation
 
-### UML
+To do.
 
-![alt text](https://github.com/dolfander/LPOO-Final-Project/blob/master/ImagesREADME/uml.png "Logo Title Text 1")
+## UML
 
-O nosso jogo vai ter como suporte a framework libGDX, assim sendo, vamos utilizar grande parte das suas ferramentas e funcionalidades. No nosso UML especificamos algumas destas ferramentas, nomeadamente as que se encontram relacionadas com o ecrã e a sua manipulação (Screen e BaseScreen). Além disso também especificamos as principais classes que serão utilizadas para a lógica do jogo (Ball e Cup). A classe Ball será responsável pelo que está relacionado com o lançamento da bola (posição da bola no ínicio, no fim e ao longo do percurso, calculo de trajetória, etc) enquanto que a classe Cup será o alvo a atingir pela bola sendo responsável aferir se a bola acertou devidamente no copo.
+![alt tag](https://github.com/Kyahra/LPOO1617_T3G8/blob/finalRelease/UML/firstUML.png "UML")
 
-### Behavioural Aspects
+## Design Patterns
 
-![alt text](https://github.com/dolfander/LPOO-Final-Project/blob/master/ImagesREADME/bahaviour.png "Logo Title Text 2")
+**Singleton** – O Sigleton foi utilizado quando em situações em que é necessário aceder multiplas vezes a uma mesma classe, sendo esta instanciada apenas uma vez. Esta abordagem permitiu que as classes Main Activity, Game Controller e Game Model apenas fossem acedidas pela função getInstance(), permitindo assim um maior controlo sobre a instância.
 
-### Design Patterns
+**Strategy** – O pattern Strategy foi usado para definir um modelo específico ao nível do Game Model e do Game View. Consoante o nível pretendido é implementada  uma diferente estratégia de jogo (easy, medium ou hard). Este mesmo princípio é aplicado relativamente ao Game Model. Os diferentes objetos provêm de Entity Model e são apenas especificados consoante a necessidade.
 
-**Singleton** – tal como já está especificado no UML, o nosso jogo deverá utilizar o Singleton para
-a Classe jogo. Esta abordagem irá resolver o facto de esta classe ser acedida várias vezes ao
-longo do código, sendo somente uma vez instanciada
+**Factory Method** – O Factory Method é implementado devido à dificuldade em establecer diversos padrões de desenho. Desta forma, define-se um padrão em Entity View que irá permitir tratar as diversas sprites, sendo estas apenas especificadas num momento posterior.
 
-**Template Method** – este design pattern vai ser muito útil ao nível do ciclo do jogo. Podemos
-implementar pequenas variâncias sem alterar o algoritmo responsável pelo ciclo do jogo. Será
-útil para implementar outros modos de jogo (por exemplo o Drunken Mode).
+## Uma Análise Global
 
-**Double Buffer** – como em qualquer jogo iremos precisar de transições entre imagens o mais
-suave possível, o double buffer é ideal para obter o efeito pretendido aquando o lançamento
-da bola.
+Ao longo do projeto fomos confrontados com as mais diversas situações. Tudo começou com a simples configuração do IDE que viríamos a utilizar, o Android Studio: problemas ao nível do SDK, correr os projeto-exemplo, configurar o LibGdx, etc. Isto tudo apenas na primeira semana. Como é óbvio não vamos enumerar todos os problemas que fomos tendo ao nível da implemetação, mas óbvio também é que poucos não foram. Desde início que tinhamos bem presente qual era o resultado final que pretendíamos atingir, por isso apesar de ter sido tudo implementado incrementalmente o código sempre foi genérico o suficiente para não termos qualquer problema aquando a implementação de novas funcionalidades. Apesar de termos tido cerca de 2 meses para implementar todo o projeto, foi bastante dificíl gerir o tempo e dedicar horas semanais constantes, de modo que a repartição do esforço tenha sido constante ao longo das semanas. Isto porque surgiam constantemente testes ou prazos de entrega que exigiam uma maior prontidão, sendo que este era sempre o projeto que ficava para segundo plano devido à distância temporal relativamente ao prazo de entrega. Assim sendo, grande parte do projeto foi implementado nas últimas semanas. Mas apesar da pressão devido ao pouco tempo que tinhamos, esta gestão de tempo revelou-se bastante vantajosa ao nível da distribuição de tarefas e da cooperação entre os dois elementos do grupo. Ao nível de conhecimento adquirido também consideramos que o panorama geral se revelou muito proveitoso, ficamos com bastantes conceitos ao nível de programação orientada a objetos, assim como todas as boas práticas que se encontram subjacentes. Este segundo trabalho também conseguiu ter um estímulo adicional, o facto de estarmos a trabalhar em Android faz-nos ver uma aplicação direta dos conceitos leccionados assim como ter um feedback das outras pessoas bastante positivo em relação ao que estamos a desenvolver. Podemos publicar o nosso trabalho na PlayStore e qualquer um consegue ter acesso ao nosso jogo. Relativamente à implementação optamos por desenvolver toda a lógica do jogo em LibGdx, pois a utilização de uma framework traz-nos muitas vantagens ao nível de uma boa implementação, permitindo recorrer a um conjunto de ferramentas que terímos que implementar de raiz sem qualquer necessidade. Nesta sequência também utilizamos Box2d a fim de implementar a física do jogo. Ao nível do layout e dos diferentes menus optamos por utilizar Android nativo. Isto permitiu-nos programar de facto em Android, e não apenas ter um projeto que fosse compatível, além disso também nos permitiu utilizar um conjunto de ferramentas próprias de Android.
 
-## GUI Design
+## Manual do Utilizador
 
-Este será o menu principal. Será possível abrir um Menu de Ajuda, com algumas indicações acerca do jogo. No ícone Definições será possível ajustar algumas definições, como o som ou o volume. Além disso será possível partilhar os resultados nas redes socias. Por fim, basta clicar no botão Play para iniciar o jogo.
-![alt text](https://github.com/dolfander/LPOO-Final-Project/blob/master/ImagesREADME/play.png "Logo Title Text 3")
+| Screenshoots  | Intruções |
+| ------------- | ------------- |
+| ![alt tag](https://github.com/Kyahra/LPOO1617_T3G8/blob/finalRelease/ImagesREADME/mainMenu.png "main menu")  | Este é o menu pricipal. É possível abrir um Menu de Ajuda, com algumas indicações acerca do jogo. No ícone Definições é possível       ajustar algumas definições, como o som ou o volume. Além disso será possível partilhar os resultados no Facebook. Por fim, basta clicar no botão Play para iniciar o jogo. Para sair do jogo, o utilizador deve clicar no botão Exit |
+| ![alt tag](https://github.com/Kyahra/LPOO1617_T3G8/blob/finalRelease/ImagesREADME/helpmenu.png "help menu")  | Se o utilizador clicar no ícone de ajuda é-lhe mostrado um pequeno texto com um resumo daquilo em que consiste o jogo. Basicamente, o jogador deve arrastar o dedo por cima da bola na direção que ele pretende que tome, quanto maior for o movimento maior será a velocidade da bola. O jogador também deve ter em atenção que quantas mais colisões a bola fizer maior será a sua pontuação. A bola pode bater em qualquer local, nas paredes, no chão, ou até mesmo na mesa (nos níveis em existe mesa). |
+| ![alt tag](https://github.com/Kyahra/LPOO1617_T3G8/blob/finalRelease/ImagesREADME/settingsmenu.png "settings menu")  | Após clicar no ícone das definições o utilizador pode alterar as definições do jogo. É possível ativar/desativar a música de fundo e o som produzido pelos botões. |
+| ![alt tag](https://github.com/Kyahra/LPOO1617_T3G8/blob/finalRelease/ImagesREADME/levelMenu.png "level menu")  | Após clicar no botão Play é possível escolher o nível que se pretende: Easy, Medium ou Hard. Easy, tal como o próprio nome indica é o nível mais fácil, trata-se apenas de acertar com a bola, sem qualquer obstáculo ou condicionante. A bola pode facil uma trajetória limpa. Medium já é um pouco mais complicado, existe uma mesa no entre a bola e o copo, dificultando um bocadinho fazer com que a bola acerte no copo. Por último, Hard é o nível mais complexo, pois além da mesa, o ecrã roda ligeiramente, sendo mais difícil posicionar a bola no ecrã. |
+| ![alt tag](https://github.com/Kyahra/LPOO1617_T3G8/blob/finalRelease/ImagesREADME/beerpongame.png "game")  | Quando o utilizador escolhe o nível pretendido é aberta a janela do jogo. O seu objetivo é fazer com que a bola acerte no copo vermelho, para isso a bola não precisa de ir diretamente para o copo, pode bater em diversos locais, fazendo com que o jogador aumente a sua pontuação. É possível iniciar uma nova tentativa ao clicar na setinha para trás. |
+| ![alt tag](https://github.com/Kyahra/LPOO1617_T3G8/blob/finalRelease/ImagesREADME/scoremenu.png "score menu")  | Quando acaba uma jogada é calculada a pontuação referente a essa mesma jogada. Neste calculo é tido em conta se o jogador acertou no interior do copo e o número de colisões da bola durante a jogada. Essa pontuação é apresentada neste menu. O utilizador pode partilhar a pontuação no Facebook, sendo que basta clicar em partilhar. Para voltar ao menu Principal basta clicar no botão Menu.|
 
-Neste segundo menu
-continuamos a ter o botão de
-Ajuda e alguma das definições
-que se encontravam no ícone
-anterior. É possível escolher o
-nível que se pretende, assim
-como ver qual é a melhor
-pontuação obtida nesse mesmo
-nível.
-![alt text](https://github.com/dolfander/LPOO-Final-Project/blob/master/ImagesREADME/chooseLevel.png "Logo Title Text 4")
 
-Neste mock-up já se encontra
-o jogo em si. Para jogar
-devemos arrastar o dedo
-desde a bola até ao canto
-inferior esquerdo do ecrã. O
-objetivo será acertar no copo.
-![alt text](https://github.com/dolfander/LPOO-Final-Project/blob/master/ImagesREADME/game.png "Logo Title Text 5")
 
-Aqui encontra-se representado
-a painel de pontuações. Voltase
-a incorporar o ícone de
-definições do menu inicial
-assim como o ícone de ajuda. O
-jogador poderá escolher jogar
-outra vez ou consultar a tabela
-dos melhores resultados.
-![alt text](https://github.com/dolfander/LPOO-Final-Project/blob/master/ImagesREADME/score.png "Logo Title Text 6")
 
-## Test Design – testes unitários
 
-• Testar comportamento da bola relativamente às físicas implementadas
 
-• Testar colisões com os diferentes objetos
 
-• Testar se a bola acerta no copo e se o jogo termina
 
-• Implementar os testes para os diferentes níveis
+[![BCH compliance](https://bettercodehub.com/edge/badge/Kyahra/LPOO1617_T3G8?token=b95cdade23d33bd80209bd0cdcb8c574b0a21573)](https://bettercodehub.com/)
 
-• Testar se os pontos correspondem às colisões
 
-• Testar comportamento dos botões (play, settings, how to play, etc.)
