@@ -170,10 +170,12 @@ public class GameController implements ContactListener {
         Fixture fixtureA = contact.getFixtureA();
         Fixture fixtureB = contact.getFixtureB();
 
+        ballHitLimit = true;
+
         checkBallInsideCup(fixtureA, fixtureB);
         checkBallInsideCup(fixtureB, fixtureA);
 
-        ballHitLimit = true;
+
 
         score += 55;
 
@@ -189,9 +191,12 @@ public class GameController implements ContactListener {
     private void checkBallInsideCup(Fixture ball, Fixture cup) {
 
         if(ball.getBody().getUserData() instanceof BallModel)
-            if(cup.getBody().getUserData() instanceof CupModel)
-                if(cup.getDensity() == CUP_FLOOR_ID)
-                gameWon = true;
+            if(cup.getBody().getUserData() instanceof CupModel) {
+                ballHitLimit = false;
+                if (cup.getDensity() == CUP_FLOOR_ID)
+                    gameWon = true;
+
+            }
 
     }
 
@@ -299,12 +304,18 @@ public class GameController implements ContactListener {
 
     public boolean ballHitLimit() {
 
-        if(ballHitLimit) {
+        if(ballHitLimit && !gameWon) {
             ballHitLimit = false;
             return true;
         }
 
         return ballHitLimit;
+
+    }
+
+    public boolean ballHitCup(){
+        return gameWon;
+
 
     }
 }

@@ -48,7 +48,7 @@ public class CupBody extends EntityBody {
 
 
         setShape( new float[]{
-                40,290,40,330,196,330,196,290
+                40,220,40,330,196,330,196,220
         }, width, height);
 
         createFixture(body, 3f, friction, restitution);

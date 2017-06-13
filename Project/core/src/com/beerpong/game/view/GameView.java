@@ -4,7 +4,6 @@ package com.beerpong.game.view;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.ScreenAdapter;
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 
@@ -31,6 +30,8 @@ import com.beerpong.game.view.levels.EasyView;
 import com.beerpong.game.view.levels.HardView;
 import com.beerpong.game.view.levels.LevelView;
 import com.beerpong.game.view.levels.MediumView;
+
+import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -102,6 +103,7 @@ public class GameView extends ScreenAdapter implements GestureDetector.GestureLi
      *
      */
     private Sound hitSound;
+    private Sound splashSound;
 
     /**
      * The background texture
@@ -137,6 +139,7 @@ public class GameView extends ScreenAdapter implements GestureDetector.GestureLi
 
         background = game.getAssetManager().get("background.png",Texture.class);
         hitSound= game.getAssetManager().get("hit.wav",Sound.class);
+        splashSound = game.getAssetManager().get("splash.wav", Sound.class);
 
         InputMultiplexer inputMultiplexer = new InputMultiplexer();
         gestureDetecture = new GestureDetector(this);
@@ -211,7 +214,8 @@ public class GameView extends ScreenAdapter implements GestureDetector.GestureLi
         game.getAssetManager().load("cup.png",Texture.class);
         game.getAssetManager().load("table.png", Texture.class);
         game.getAssetManager().load("rewind.png",Texture.class);
-       game.getAssetManager().load("hit.wav",Sound.class);
+        game.getAssetManager().load("hit.wav",Sound.class);
+        game.getAssetManager().load("splash.wav", Sound.class);
 
         game.getAssetManager().finishLoading();
     }
@@ -254,6 +258,14 @@ public class GameView extends ScreenAdapter implements GestureDetector.GestureLi
         if(GameController.getInstance().ballHitLimit())
             hitSound.play();
 
+        if(GameController.getInstance().ballHitCup()){
+            splashSound.play();
+            try {
+                TimeUnit.MILLISECONDS.sleep(50);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
 
 
         int score;
