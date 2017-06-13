@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -100,7 +101,7 @@ public class GameView extends ScreenAdapter implements GestureDetector.GestureLi
      * The music
      *
      */
-    private Music music;
+    private Sound hitSound;
 
     /**
      * The background texture
@@ -135,6 +136,7 @@ public class GameView extends ScreenAdapter implements GestureDetector.GestureLi
         createRewindButton();
 
         background = game.getAssetManager().get("background.png",Texture.class);
+        hitSound= game.getAssetManager().get("hit.wav",Sound.class);
 
         InputMultiplexer inputMultiplexer = new InputMultiplexer();
         gestureDetecture = new GestureDetector(this);
@@ -146,6 +148,8 @@ public class GameView extends ScreenAdapter implements GestureDetector.GestureLi
 
 
         GameModel.setTest();
+
+
 
 
     }
@@ -207,6 +211,7 @@ public class GameView extends ScreenAdapter implements GestureDetector.GestureLi
         game.getAssetManager().load("cup.png",Texture.class);
         game.getAssetManager().load("table.png", Texture.class);
         game.getAssetManager().load("rewind.png",Texture.class);
+       game.getAssetManager().load("hit.wav",Sound.class);
 
         game.getAssetManager().finishLoading();
     }
@@ -245,11 +250,17 @@ public class GameView extends ScreenAdapter implements GestureDetector.GestureLi
         stage.act();
         stage.draw();
 
+
+        if(GameController.getInstance().ballHitLimit())
+            hitSound.play();
+
+
+
         int score;
+
         score = GameController.getInstance().isOver();
         if(score !=0)
-
-        game.setScore(score);
+            game.setScore(score);
 
     }
 
@@ -416,4 +427,7 @@ public class GameView extends ScreenAdapter implements GestureDetector.GestureLi
                 break;
         }
     }
+
+
+
 }

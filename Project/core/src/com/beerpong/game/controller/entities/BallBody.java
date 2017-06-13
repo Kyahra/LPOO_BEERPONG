@@ -46,7 +46,7 @@ public class BallBody extends EntityBody {
         fixtureDef.shape = circle;
         fixtureDef.density = .04f;
         fixtureDef.friction =  .7f;
-        fixtureDef.restitution =  .5f;
+        fixtureDef.restitution =  .7f;
 
 
         body.createFixture(fixtureDef);

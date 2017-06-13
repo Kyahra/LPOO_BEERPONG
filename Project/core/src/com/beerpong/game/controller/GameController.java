@@ -83,6 +83,7 @@ public class GameController implements ContactListener {
      *
      */
     private boolean isBallMoving = false;
+    private boolean ballHitLimit = false;
 
     /*
     * Initializes the game controller
@@ -171,6 +172,8 @@ public class GameController implements ContactListener {
 
         checkBallInsideCup(fixtureA, fixtureB);
         checkBallInsideCup(fixtureB, fixtureA);
+
+        ballHitLimit = true;
 
         score += 55;
 
@@ -294,4 +297,14 @@ public class GameController implements ContactListener {
         return score;
     }
 
+    public boolean ballHitLimit() {
+
+        if(ballHitLimit) {
+            ballHitLimit = false;
+            return true;
+        }
+
+        return ballHitLimit;
+
+    }
 }

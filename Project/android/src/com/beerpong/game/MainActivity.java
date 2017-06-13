@@ -25,11 +25,10 @@ import com.facebook.FacebookSdk;
 import com.facebook.login.widget.LoginButton;
 import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.model.SharePhoto;
-import com.facebook.share.model.SharePhotoContent;
+
 import com.facebook.share.widget.ShareButton;
 
 
-import java.io.ByteArrayOutputStream;
 import java.util.Stack;
 
 /**
@@ -65,11 +64,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.helpButton).setOnClickListener(this);
 
         loginButton = (LoginButton)findViewById(R.id.fb_login_bn);
-/*
-        ShareLinkContent content =  new ShareLinkContent.Builder().setContentUrl(Uri.parse("https://developers.facebook.com")).build();
-        ShareButton shareButton = (ShareButton)findViewById(R.id.fb_share_button);
-        shareButton.setShareContent(content);
-*/
+
     }
 
     public static MainActivity getInstance() {
@@ -143,9 +138,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                // Bitmap myLogo = ((BitmapDrawable) myDrawable).getBitmap();
 
 
-                Bitmap myLogo = BitmapFactory.decodeResource(getResources(), R.drawable.cup);
+               // Bitmap myLogo = BitmapFactory.decodeResource(getResources(), R.drawable.cup);
 
-                SharePhoto photo = new SharePhoto.Builder().setBitmap(myLogo).build();
+             //   SharePhoto photo = new SharePhoto.Builder().setBitmap(myLogo).build();
                // SharePhotoContent content = new SharePhotoContent.Builder().addPhoto(photo).build();
 
                 ShareLinkContent content = new ShareLinkContent.Builder().setContentUrl(Uri.parse("https://developers.facebook.com")).build();
