@@ -26,9 +26,10 @@ import com.beerpong.game.model.GameModel;
 import com.beerpong.game.model.entities.BallModel;
 import com.beerpong.game.model.entities.CupModel;
 import com.beerpong.game.view.entities.EntityView;
+import com.beerpong.game.view.levels.EasyView;
+import com.beerpong.game.view.levels.HardView;
 import com.beerpong.game.view.levels.LevelView;
-
-
+import com.beerpong.game.view.levels.MediumView;
 
 
 /**
@@ -69,7 +70,7 @@ public class GameView extends ScreenAdapter implements GestureDetector.GestureLi
      * The level view
      *
      */
-    private final LevelView level;
+    private static LevelView level;
 
     /**
      * The gesture detecture
@@ -119,11 +120,12 @@ public class GameView extends ScreenAdapter implements GestureDetector.GestureLi
      * @param game the game
      * @param level the level
      */
-    public GameView(BeerPong game, LevelView level){
+    public GameView(BeerPong game, int level){
 
 
         this.game = game;
-        this.level = level;
+
+        setLevel(level);
 
         loadAssets();
 
@@ -399,4 +401,19 @@ public class GameView extends ScreenAdapter implements GestureDetector.GestureLi
 
     }
 
+    public void setLevel(int level) {
+        switch(level){
+            case 1:
+                this.level = new EasyView();
+                break;
+            case 2:
+                this.level = new MediumView();
+                break;
+            case 3:
+                this.level = new HardView();
+                break;
+            default:
+                break;
+        }
+    }
 }
